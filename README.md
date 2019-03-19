@@ -1,3 +1,2 @@
 # Audio3D
-Aplikacja umożliwiająca umieszczenie źródła dźwięku na obwodzie koła dwuwymiarowego.
-
+Aplikacja umożliwiająca umieszczenie źródła dźwięku w przestrzeni trójwymiarowej.
