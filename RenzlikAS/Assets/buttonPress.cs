@@ -26,6 +26,10 @@ public class buttonPress : MonoBehaviour
         File_Extension = File_Path.Substring(File_Path.IndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
         while (File_Extension != "mp3") // pętla sprawdzająca rozszerzenie pliku
         {
+            if (File_Extension == "")  // przerywa działanie pętli w momencie, gdy rozszerzenie pliku zwraca pustgo stringa.
+            {
+                break;
+            }
             EditorUtility.DisplayDialog("Error", "Niepoprawne rozszerzenie\nWybierz jeszcze raz", "OK", ""); // error 
             File_Path = EditorUtility.OpenFilePanel("Wybierz utwór", "", ""); // ponowny wybór pliku
             File_Extension = File_Path.Substring(File_Path.IndexOf('.') + 1); // ponowna analiza rozszerzenia
