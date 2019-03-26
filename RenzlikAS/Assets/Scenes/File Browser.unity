@@ -803,9 +803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fb5f765ad6fcd469e852a48a22c41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Audio_Source: {fileID: 1154504883}
-  Path: 
   Choose_File: {fileID: 82755727}
+  Audio_Source: {fileID: 1154504884}
 --- !u!4 &1458143855
 Transform:
   m_ObjectHideFlags: 0
