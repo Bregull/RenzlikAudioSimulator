@@ -6,23 +6,33 @@ using UnityEditor;
 
 public class buttonPress : MonoBehaviour
 {
-    public string path;
-    public Button chooseFile;
-     // Start is called before the first frame update
+    public GameObject Audio_Source;
+    string File_Path, File_Extension;
+    public Button Choose_File;
+    
+
+
     void Start()
     {
-        chooseFile.onClick.AddListener(onClick);
+        Choose_File.onClick.AddListener(On_Click);
     }
 
-    void onClick()
+    void On_Click()
     {
-        FileSelect();
+        Select_File();
         Debug.Log("click");
     }
 
-    public void FileSelect()
+    public void Select_File()
     {
-        path = EditorUtility.OpenFilePanel("Wybierz utwór", "", "mp3");
-        print(path);
+        File_Path = EditorUtility.OpenFilePanel("Wybierz utwór", "", "");
+        File_Extension = File_Path.Substring(File_Path.IndexOf('.') + 1);
+        while (File_Extension != "mp3")
+        {
+            EditorUtility.DisplayDialog("Error", "Niepoprawne rozszerzenie\nWybierz jeszcze raz", "OK", "");
+            File_Path = EditorUtility.OpenFilePanel("Wybierz utwór", "", "");
+            File_Extension = File_Path.Substring(File_Path.IndexOf('.') + 1);
+        }
+        Debug.Log(File_Path);
     }
 }
