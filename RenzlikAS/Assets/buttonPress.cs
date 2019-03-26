@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class buttonPress : MonoBehaviour
 {
-
     public Button chooseFile;
      // Start is called before the first frame update
     void Start()
@@ -15,6 +14,6 @@ public class buttonPress : MonoBehaviour
 
     void onClick()
     {
-        Debug.Log("CLICK");
+        Debug.Log("click");
     }
 }
