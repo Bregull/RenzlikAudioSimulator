@@ -20,7 +20,7 @@ public class buttonPress : MonoBehaviour
     void On_Click()
     {
         Select_File(); // instrukcje po naciśnięciu buttona
-        StartCoroutine(Upload_Audio_File());
+        StartCoroutine(Upload_Audio_File()); //metoda pobierająca oraz odtwarzająca wybraną ścieżkę audio
     }
 
     public void Select_File()
@@ -42,17 +42,17 @@ public class buttonPress : MonoBehaviour
 
     IEnumerator Upload_Audio_File()
     {
-        using (UnityWebRequest Get_Audio_Clip = UnityWebRequestMultimedia.GetAudioClip(File_Path, AudioType.UNKNOWN))
+        using (UnityWebRequest Get_Audio_Clip = UnityWebRequestMultimedia.GetAudioClip(File_Path, AudioType.UNKNOWN)) // wysyłanie web requestu pobierającego multimedia z podanego adresu - podanym adresem jest ścieżka pliku
         {
-            yield return Get_Audio_Clip.SendWebRequest();
-            Audio_Clip_Selected = DownloadHandlerAudioClip.GetContent(Get_Audio_Clip);         
+            yield return Get_Audio_Clip.SendWebRequest(); // zwraca nam plik audio z adresu
+            Audio_Clip_Selected = DownloadHandlerAudioClip.GetContent(Get_Audio_Clip); // pobiera plik audio i przypisuje do zmiennej Audio_Clip_Selected będącą Audio_Clipem
         }
-        Play_Song();
+        Play_Song(); // metoda odtwarzająca dźwięk
     }
 
     public void Play_Song()
     {
-        Audio_Source.clip = Audio_Clip_Selected;
-        Audio_Source.Play();
+        Audio_Source.clip = Audio_Clip_Selected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
+        Audio_Source.Play(); // play audio
     }
 }
