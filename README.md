@@ -1,2 +1,4 @@
-# Audio3D
-Aplikacja umożliwiająca umieszczenie źródła dźwięku w przestrzeni trójwymiarowej
+# Renzlik Audio Simulator
+
+Aplikacja umożliwiająca umieszczenie źródła dźwięku w przestrzeni.
+Źródłem dźwięku jest plik audio wybrany przez użytkownika.
