@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.Networking;  // pozwala nam na streamowanie muzyki z komputera (lub URL - do sprawdzenia) do naszego projektu Unity
 using UnityEngine.UI;  // obsługa guzika
 using UnityEditor;  // Pozwala nam dodać EditorUtility, z pomocą którego otwieramy panel wyboru pliku, oraz panel błędu.
+using UnityEngine.SceneManagement;
+
 
 public class buttonPress : MonoBehaviour
 {
@@ -10,10 +12,13 @@ public class buttonPress : MonoBehaviour
     public Button Choose_File;  // dodajemy przycisk do sceny
     public AudioClip Audio_Clip_Selected;
     public AudioSource Audio_Source;
-    
+    public GameObject Audio_Controller;
+
+
 
     void Start()
     {
+        DontDestroyOnLoad(Audio_Controller);
         Choose_File.onClick.AddListener(On_Click); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click       
     }
 
@@ -51,8 +56,9 @@ public class buttonPress : MonoBehaviour
     }
 
     public void Play_Song()
-    {
+    {   
         Audio_Source.clip = Audio_Clip_Selected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
         Audio_Source.Play(); // play audio
+        SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single);
     }
 }
