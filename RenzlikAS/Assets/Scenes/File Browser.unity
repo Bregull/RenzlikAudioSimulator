@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 82755728}
   - component: {fileID: 82755727}
   m_Layer: 5
-  m_Name: Choose_File
+  m_Name: ChooseFile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 897978620}
   - component: {fileID: 897978619}
   m_Layer: 0
-  m_Name: Audio_Controller
+  m_Name: AudioController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 1038839018}
   - component: {fileID: 1038839017}
   m_Layer: 5
-  m_Name: App_Name
+  m_Name: AppName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 1458143855}
   - component: {fileID: 1458143854}
   m_Layer: 0
-  m_Name: Button_Press
+  m_Name: ButtonPress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,10 +968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fb5f765ad6fcd469e852a48a22c41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Choose_File: {fileID: 82755727}
-  Audio_Clip_Selected: {fileID: 0}
-  Audio_Source: {fileID: 1154504884}
-  Audio_Controller: {fileID: 897978614}
+  chooseFile: {fileID: 82755727}
+  audioClipSelected: {fileID: 0}
+  audioSource: {fileID: 1154504884}
+  audioController: {fileID: 897978614}
 --- !u!4 &1458143855
 Transform:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 1736540441}
   - component: {fileID: 1154504884}
   m_Layer: 0
-  m_Name: Audio_Source
+  m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1342,7 +1342,7 @@ PrefabInstance:
     - target: {fileID: 1538460968663044693, guid: fc9652dc7535d0841b2a67795c83dd06,
         type: 3}
       propertyPath: m_Name
-      value: Audio_Source
+      value: AudioSource
       objectReference: {fileID: 0}
     - target: {fileID: 1538460968663044691, guid: fc9652dc7535d0841b2a67795c83dd06,
         type: 3}

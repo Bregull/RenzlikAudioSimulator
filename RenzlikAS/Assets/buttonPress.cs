@@ -6,59 +6,59 @@ using UnityEditor;  // Pozwala nam dodać EditorUtility, z pomocą którego otwi
 using UnityEngine.SceneManagement;
 
 
-public class buttonPress : MonoBehaviour
+public class ButtonPress : MonoBehaviour
 {
-    string File_Path, File_Extension;  // stringi deklarujące lokalizację, oraz rozszerzenie pliku audio
-    public Button Choose_File;  // dodajemy przycisk do sceny
-    public AudioClip Audio_Clip_Selected;
-    public AudioSource Audio_Source;
-    public GameObject Audio_Controller;
+    string filePath, fileExtension;  // stringi deklarujące lokalizację, oraz rozszerzenie pliku audio
+    public Button chooseFile;  // dodajemy przycisk do sceny
+    public AudioClip audioClipSelected;
+    public AudioSource audioSource;
+    public GameObject audioController;
 
 
 
     void Start()
     {
-        DontDestroyOnLoad(Audio_Controller);
-        Choose_File.onClick.AddListener(On_Click); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click       
+        DontDestroyOnLoad(audioController);
+        chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click       
     }
 
-    void On_Click()
+    void OnClick()
     {
-        Select_File(); // instrukcje po naciśnięciu buttona
-        StartCoroutine(Upload_Audio_File()); //metoda pobierająca oraz odtwarzająca wybraną ścieżkę audio
+        SelectFile(); // instrukcje po naciśnięciu buttona
+        StartCoroutine(UploadAudioFile()); //metoda pobierająca oraz odtwarzająca wybraną ścieżkę audio
     }
 
-    public void Select_File()
+    public void SelectFile()
     {
-        File_Path = EditorUtility.OpenFilePanel("Wybierz utwór", "", "");  // otwiera okno przeglądania plików, w nawiasach wpisujemy ("nazwa okna","lokalizacje(?)","rozszerzenia")
-        File_Extension = File_Path.Substring(File_Path.IndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
-        while (File_Extension != "wav" && File_Extension != "ogg") // pętla sprawdzająca rozszerzenie pliku -> DZIAŁA: Wav, Ogg; NIE DZIAŁA: Mp3, Flac
+        filePath = EditorUtility.OpenFilePanel("Wybierz utwór", "", "");  // otwiera okno przeglądania plików, w nawiasach wpisujemy ("nazwa okna","lokalizacje(?)","rozszerzenia")
+        fileExtension = filePath.Substring(filePath.IndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
+        while (fileExtension != "wav" && fileExtension != "ogg") // pętla sprawdzająca rozszerzenie pliku -> DZIAŁA: Wav, Ogg; NIE DZIAŁA: Mp3, Flac
         {
-            if (File_Extension == "")  // przerywa działanie pętli w momencie, gdy rozszerzenie pliku zwraca pustgo stringa.
+            if (fileExtension == "")  // przerywa działanie pętli w momencie, gdy rozszerzenie pliku zwraca pustgo stringa.
             {
                 break;
             }
             EditorUtility.DisplayDialog("Error", "Niepoprawne rozszerzenie\nWybierz jeszcze raz", "OK", ""); // error 
-            File_Path = EditorUtility.OpenFilePanel("Wybierz utwór", "", ""); // ponowny wybór pliku
-            File_Extension = File_Path.Substring(File_Path.IndexOf('.') + 1); // ponowna analiza rozszerzenia
+            filePath = EditorUtility.OpenFilePanel("Wybierz utwór", "", ""); // ponowny wybór pliku
+            fileExtension = filePath.Substring(filePath.IndexOf('.') + 1); // ponowna analiza rozszerzenia
         }
-        Debug.Log(File_Path); // zwraca nam ścieżkę pliku w konsoli
+        Debug.Log(filePath); // zwraca nam ścieżkę pliku w konsoli
     }
 
-    IEnumerator Upload_Audio_File()
+    IEnumerator UploadAudioFile()
     {
-        using (UnityWebRequest Get_Audio_Clip = UnityWebRequestMultimedia.GetAudioClip(File_Path, AudioType.UNKNOWN)) // wysyłanie web requestu pobierającego multimedia z podanego adresu - podanym adresem jest ścieżka pliku
+        using (UnityWebRequest getAudioClip = UnityWebRequestMultimedia.GetAudioClip(filePath, AudioType.UNKNOWN)) // wysyłanie web requestu pobierającego multimedia z podanego adresu - podanym adresem jest ścieżka pliku
         {
-            yield return Get_Audio_Clip.SendWebRequest(); // zwraca nam plik audio z adresu
-            Audio_Clip_Selected = DownloadHandlerAudioClip.GetContent(Get_Audio_Clip); // pobiera plik audio i przypisuje do zmiennej Audio_Clip_Selected będącą Audio_Clipem
+            yield return getAudioClip.SendWebRequest(); // zwraca nam plik audio z adresu
+            audioClipSelected = DownloadHandlerAudioClip.GetContent(getAudioClip); // pobiera plik audio i przypisuje do zmiennej Audio_Clip_Selected będącą Audio_Clipem
         }
-        Play_Song(); // metoda odtwarzająca dźwięk
+        PlaySong(); // metoda odtwarzająca dźwięk
     }
 
-    public void Play_Song()
+    public void PlaySong()
     {   
-        Audio_Source.clip = Audio_Clip_Selected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
-        Audio_Source.Play(); // play audio
+        audioSource.clip = audioClipSelected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
+        audioSource.Play(); // play audio
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single);
     }
 }
