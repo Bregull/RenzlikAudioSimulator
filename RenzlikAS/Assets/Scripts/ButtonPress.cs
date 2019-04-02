@@ -13,8 +13,7 @@ public class ButtonPress : MonoBehaviour
     public AudioClip audioClipSelected;
     public AudioSource audioSource;
     public GameObject audioController;
-    public GameObject mainCamera;
-    public GameObject cameraTwo;
+
 
 
     void Start()
