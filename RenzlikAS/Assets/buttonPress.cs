@@ -13,14 +13,17 @@ public class ButtonPress : MonoBehaviour
     public AudioClip audioClipSelected;
     public AudioSource audioSource;
     public GameObject audioController;
-
+    public GameObject mainCamera;
+    public GameObject cameraTwo;
 
 
     void Start()
+
     {
         DontDestroyOnLoad(audioController);
         chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click       
     }
+
 
     void OnClick()
     {
