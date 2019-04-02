@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class movement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
 
     public float speed;
