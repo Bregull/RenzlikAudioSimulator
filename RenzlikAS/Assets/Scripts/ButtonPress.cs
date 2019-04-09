@@ -20,6 +20,7 @@ public class ButtonPress : MonoBehaviour
 
     {
         DontDestroyOnLoad(audioController);
+        DontDestroyOnLoad(dontDestroyOnLoadCamera);
         chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click       
     }
 

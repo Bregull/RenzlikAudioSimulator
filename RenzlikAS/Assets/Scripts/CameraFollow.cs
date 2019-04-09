@@ -14,11 +14,5 @@ public class CameraFollow : MonoBehaviour
     {
         myCamera = GetComponent<Camera>();
     }
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.C))
-        {
-            myCamera.enabled = true;
-        }
-    }
+    
 }

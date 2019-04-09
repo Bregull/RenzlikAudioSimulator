@@ -1,75 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraSwitch : MonoBehaviour
 {
-
-    public GameObject mainCamera;
-    public GameObject cameraTwo;
-
+    public Camera dontDestroyOnLoadCamera;
+    public Camera cameraTwo;
 
 
-    void Start()
+    void FixedUpdate()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "RenzlikAS")
+        {
+            ShowdontDestroyCameraOnLoadCamera();
+            ShowCameraTwo();
+        }
 
-        CameraPositionChange(PlayerPrefs.GetInt("CameraPosition"));
     }
 
-
-    void Update()
-    {
-  
-        SwitchCamera();
-    }
-
-  
-    public void CameraPositonM()
-    {
-        CameraChangeCounter();
-    }
-
-  
-    void SwitchCamera()
+    public void ShowdontDestroyCameraOnLoadCamera()
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            CameraChangeCounter();
+            dontDestroyOnLoadCamera.enabled = true;
+            cameraTwo.enabled = false;
         }
-    }
-
-   
-    void CameraChangeCounter()
-    {
-        int CameraPositionCounter = PlayerPrefs.GetInt("CameraPosition");
-        CameraPositionCounter++;
-        CameraPositionChange(CameraPositionCounter);
-    }
-
-   
-    void CameraPositionChange(int CamPosition)
-    {
-        if (CamPosition > 1)
-        {
-            CamPosition = 0;
-        }
-
-        
-        PlayerPrefs.SetInt("CameraPosition", CamPosition);
-
        
-        if (CamPosition == 0)
+    }
+    public void ShowCameraTwo()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            mainCamera.SetActive(true);
-            cameraTwo.SetActive(false);
-        }
-
-        
-        if (CamPosition == 1)
-        {
-            cameraTwo.SetActive(true);
-            mainCamera.SetActive(false);
+            dontDestroyOnLoadCamera.enabled = false;
+            cameraTwo.enabled = true;
         }
 
     }
+    
 }
