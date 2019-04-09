@@ -5,13 +5,14 @@ using UnityEngine.UI;  // obsługa guzika
 using UnityEditor;  // Pozwala nam dodać EditorUtility, z pomocą którego otwieramy panel wyboru pliku, oraz panel błędu.
 using UnityEngine.SceneManagement;
 using SFB;
+using System.Windows.Forms;
 
 
 public class ButtonPress : MonoBehaviour
 {
     string[] filePath;
     string filePath2, fileExtension;  // stringi deklarujące lokalizację, oraz rozszerzenie pliku audio
-    public Button chooseFile;  // dodajemy przycisk do sceny
+    public UnityEngine.UI.Button chooseFile;  // dodajemy przycisk do sceny
     public AudioClip audioClipSelected;
     public AudioSource audioSource;
     public GameObject audioController;
@@ -45,6 +46,8 @@ public class ButtonPress : MonoBehaviour
                 break;
             }
             // StandaloneFileBrowser.DisplayDialog("Error", "Nieobsługiwane rozszerzenie\nWybierz jeszcze raz", "OK"); // error 
+            MessageBox.Show("Nieobsługiwany format pliku.\nWybierz jeszcze raz.");
+            
             filePath = StandaloneFileBrowser.OpenFilePanel("Wybierz utwór", "", "", false); // ponowny wybór pliku
             filePath2 = string.Concat(filePath);
             fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // ponowna analiza rozszerzenia
