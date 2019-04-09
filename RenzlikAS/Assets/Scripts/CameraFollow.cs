@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     }
     private void Start()
     {
-        myCamera = GetComponent<Camera>();
+        myCamera = GetComponent<Camera>(); //GetComponent jest główną funkcją, która pozwala nam dostać się do innych "składników"
     }
 
 }

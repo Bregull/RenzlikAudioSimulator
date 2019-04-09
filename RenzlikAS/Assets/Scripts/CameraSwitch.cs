@@ -20,10 +20,10 @@ public class CameraSwitch : MonoBehaviour
 
     public void ShowdontDestroyCameraOnLoadCamera() // Przenosimy kamerę ze sceny File Browser do sceny RenzlikAs
     {
-        if (Input.GetKeyDown(KeyCode.V)) // Funkcja podporządkowująca literę "V" do włączenia kamery dontDestroyOnLoad i wyłączenia kamery cameraTwo przy naciśnięciu klawisz
+        if (Input.GetKeyDown(KeyCode.V)) // Funkcja podporządkowująca literę "V" do włączenia kamery dontDestroyOnLoad i wyłączenia kamery cameraTwo przy naciśnięciu klawisza
         {
-            dontDestroyOnLoadCamera.enabled = true;
-            cameraTwo.enabled = false;
+            dontDestroyOnLoadCamera.enabled = true; // jak naciśniemy "V" to aktywujemy kamere dontDestroyOnLoad
+            cameraTwo.enabled = false; // jak naciśniemy "V" to dezaktywujemy kamere cameraTwo
         }
        
     }

@@ -44,7 +44,7 @@ public class ButtonPress : MonoBehaviour
             {
                 break;
             }
-            // StandaloneFileBrowser.DisplayDialog("Error", "Nieobsługiwane rozszerzenie\nWybierz jeszcze raz", "OK"); // error 
+           // StandaloneFileBrowser.DisplayDialog("Error", "Nieobsługiwane rozszerzenie\nWybierz jeszcze raz", "OK"); // error 
             filePath = StandaloneFileBrowser.OpenFilePanel("Wybierz utwór", "", "", false); // ponowny wybór pliku
             filePath2 = string.Concat(filePath);
             fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // ponowna analiza rozszerzenia
