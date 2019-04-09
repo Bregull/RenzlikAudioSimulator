@@ -13,8 +13,8 @@ public class ButtonPress : MonoBehaviour
     public AudioClip audioClipSelected;
     public AudioSource audioSource;
     public GameObject audioController;
-
-
+    public Camera dontDestroyOnLoadCamera;
+    public Camera cameraTwo;
 
     void Start()
 
@@ -40,7 +40,7 @@ public class ButtonPress : MonoBehaviour
             {
                 break;
             }
-            EditorUtility.DisplayDialog("Error", "Niepoprawne rozszerzenie\nWybierz jeszcze raz", "OK", ""); // error 
+            EditorUtility.DisplayDialog("Error", "Nieobsługiwane rozszerzenie\nWybierz jeszcze raz", "OK", ""); // error 
             filePath = EditorUtility.OpenFilePanel("Wybierz utwór", "", ""); // ponowny wybór pliku
             fileExtension = filePath.Substring(filePath.IndexOf('.') + 1); // ponowna analiza rozszerzenia
         }
@@ -61,6 +61,8 @@ public class ButtonPress : MonoBehaviour
     {   
         audioSource.clip = audioClipSelected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
         audioSource.Play(); // play audio
+        dontDestroyOnLoadCamera.enabled = true;
+        cameraTwo.enabled = false;
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single);
     }
 }
