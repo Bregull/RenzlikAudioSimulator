@@ -32,7 +32,15 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClick()
     {
+        escPress = false;
+        Time.timeScale = 1f;
+        escPress = false;
+        GameObject AudioController = GameObject.Find("AudioController");
+        Destroy(AudioController);
+        GameObject DontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera");
+        Destroy(DontDestroyOnLoadCamera);
         SceneManager.LoadScene("File Browser", LoadSceneMode.Single);
+
     }
 
     void PauseGame()
