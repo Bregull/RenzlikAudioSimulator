@@ -11,11 +11,13 @@ public class MouseLook : MonoBehaviour
 
     private void FixedUpdate()  
     {
-        rotation.y += Input.GetAxis("Mouse X");
-        rotation.x += -Input.GetAxis("Mouse Y");
-        rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);//clamp zwraca wartosc value jeżeli znajduje się w przedziale (float value, float min, float max)
-        transform.localRotation = Quaternion.Euler(rotation.x * lookSpeed, rotation.y*lookSpeed, 0); //obraca kamere wokół osi x i y, quaternion representuje rotacje 
-       
+        if (Input.GetMouseButton(1)) // warunek- wciśnięcie prawego klawisza myszy
+        {
+            rotation.y += Input.GetAxis("Mouse X");
+            rotation.x += -Input.GetAxis("Mouse Y");
+            rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);//clamp zwraca wartosc value jeżeli znajduje się w przedziale (float value, float min, float max)
+            transform.localRotation = Quaternion.Euler(rotation.x * lookSpeed, rotation.y * lookSpeed, 0); //obraca kamere wokół osi x i y, quaternion representuje rotacje 
+        }
     }
     
 
