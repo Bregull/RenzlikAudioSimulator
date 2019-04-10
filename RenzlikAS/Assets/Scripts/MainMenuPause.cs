@@ -8,9 +8,10 @@ public class MainMenuPause : MonoBehaviour
     public GameObject pauseMenu;
     public Button chooseNewFile;
 
-
+   
     void Start()
     {
+        pauseMenu.SetActive(false);
         chooseNewFile.onClick.AddListener(OnClick);
     }
 
