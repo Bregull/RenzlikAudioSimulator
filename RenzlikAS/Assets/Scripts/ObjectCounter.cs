@@ -26,21 +26,22 @@ public class ObjectCounter : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 selectedObject -= 1;
-            }
-            if (selectedObject == 0)
-            {
-                selectedObject = objectNumber;
-            }
-            for (int i = 1; i <= selectedObject + 1; i++)
-            {
-                GameObject turnOff = GameObject.Find("AudioController" + i);
-                if (i != selectedObject)
+                if (selectedObject == 0)
                 {
-                    turnOff.GetComponent<Movement>().enabled = false;
+                    selectedObject = objectNumber;
                 }
-                else
+                for (int i = 1; i <= objectNumber; i++)
                 {
-                    turnOff.GetComponent<Movement>().enabled = true;
+                    Debug.Log("kontroler nr " + i);
+                    GameObject turnOff = GameObject.Find("AudioController" + i);
+                    if (i != selectedObject)
+                    {
+                        turnOff.GetComponent<Movement>().enabled = false;
+                    }
+                    else
+                    {
+                        turnOff.GetComponent<Movement>().enabled = true;
+                    }
                 }
             }
         }
