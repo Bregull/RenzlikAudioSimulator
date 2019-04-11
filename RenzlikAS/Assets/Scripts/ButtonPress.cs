@@ -72,6 +72,7 @@ public class ButtonPress : MonoBehaviour
         audioSource.Play(); // play audio
         dontDestroyOnLoadCamera.enabled = true; // aktywuje kamerę z góry
         cameraTwo.enabled = false; // upewnia się, że kamera podążająca za graczem jest wyłączona
+        audioController.name += GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
     }
 }

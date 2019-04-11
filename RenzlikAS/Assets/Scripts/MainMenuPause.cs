@@ -7,12 +7,16 @@ public class MainMenuPause : MonoBehaviour
     private static bool escPress = false;
     public GameObject pauseMenu;
     public Button chooseNewFile;
+    public Button addFile;
+    int numberOfObjects;
 
    
     void Start()
     {
+        numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
         pauseMenu.SetActive(false);
-        chooseNewFile.onClick.AddListener(OnClick);
+        chooseNewFile.onClick.AddListener(OnClickNewFile);
+        addFile.onClick.AddListener(OnClickAddFile);
     }
 
     void Update()
@@ -30,17 +34,25 @@ public class MainMenuPause : MonoBehaviour
         }
     }
 
-    void OnClick()
+    void OnClickNewFile()
     {
         escPress = false;
         Time.timeScale = 1f;
-        escPress = false;
-        GameObject AudioController = GameObject.Find("AudioController");
-        Destroy(AudioController);
-        GameObject DontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera");
-        Destroy(DontDestroyOnLoadCamera);
+        GameObject audioController = GameObject.Find("AudioController" + numberOfObjects);
+        Destroy(audioController);
+        GameObject dontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera");
+        Destroy(dontDestroyOnLoadCamera);
         SceneManager.LoadScene("File Browser", LoadSceneMode.Single);
+    }
 
+    void OnClickAddFile()
+    {
+        escPress = false;
+        Time.timeScale = 1f;
+        GameObject dontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera");
+        Destroy(dontDestroyOnLoadCamera);
+        SceneManager.LoadScene("File Browser", LoadSceneMode.Single);
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber++;
     }
 
     void PauseGame()
