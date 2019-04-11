@@ -39,6 +39,7 @@ public class ButtonPress : MonoBehaviour
         filePath = StandaloneFileBrowser.OpenFilePanel("Wybierz utwór", "", "", false);  // otwiera okno przeglądania plików i zapisuje jako tablica string
         filePath2 = string.Concat(filePath); // konwersja na string
         fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
+        fileExtension = fileExtension.ToLower(); // zamiana rozszerzenia na małe litery
         while (fileExtension != "wav" && fileExtension != "ogg") // pętla sprawdzająca rozszerzenie pliku -> DZIAŁA: Wav, Ogg; NIE DZIAŁA: Mp3, Flac
         {
             if (fileExtension == "")  // przerywa działanie pętli w momencie, gdy rozszerzenie pliku zwraca pustgo stringa.
@@ -50,6 +51,7 @@ public class ButtonPress : MonoBehaviour
             filePath = StandaloneFileBrowser.OpenFilePanel("Wybierz utwór", "", "", false); // ponowny wybór pliku
             filePath2 = string.Concat(filePath); // ponowna konwersja
             fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // ponowna analiza rozszerzenia
+            fileExtension = fileExtension.ToLower(); // zamiana rozszerzenia na małe litery
         }
         Debug.Log(filePath2); // zwraca nam ścieżkę pliku w konsoli
     }
