@@ -9,11 +9,9 @@ public class Movement : MonoBehaviour
     public float speed;  // prędkość a dokładniej siła jaka zadziała na nasz obiekt
     private Rigidbody rigid; // odnośnik do komponentu Rigidbody
     string sceneName; // nazwa sceny
-    int selectedObject;
 
     void Start()
     {
-        selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
         rigid = GetComponent<Rigidbody>(); // przypisuje komponent Rigidbody z obiektu do zmiennej
     }
 
@@ -34,34 +32,4 @@ public class Movement : MonoBehaviour
             rigid.AddForce(movement * speed); // dodaje siłę zgodnie ze zmienną speed oraz o kierunku wektora
         }
     }
-    /*void checkKey()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Debug.Log(selectedObject);
-            Debug.Log(GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber);
-            selectedObject++;
-            if (selectedObject > GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber)
-            {
-                selectedObject = 1;
-            }
-            
-            for (int i = 1; i <= selectedObject+1; i++)
-            {
-                GameObject turnOff;
-                if (i == selectedObject)
-                {
-                    turnOff = GameObject.Find("AudioController" + i);
-                    turnOff.GetComponent<Movement>().enabled = true;
-                }
-                else
-                {
-                    turnOff = GameObject.Find("AudioController" + i);
-                    turnOff.GetComponent<Movement>().enabled = false;
-                }
-            }
-            
-        }
-    }
-        */
 }
