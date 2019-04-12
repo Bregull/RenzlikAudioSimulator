@@ -13,6 +13,7 @@ public class MainMenuPause : MonoBehaviour
    
     void Start()
     {
+        AudioListener.pause = false;
         numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
         pauseMenu.SetActive(false);
         chooseNewFile.onClick.AddListener(OnClickNewFile);
@@ -57,6 +58,7 @@ public class MainMenuPause : MonoBehaviour
 
     void PauseGame()
     {
+        AudioListener.pause = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         escPress = true;
@@ -64,6 +66,7 @@ public class MainMenuPause : MonoBehaviour
 
     void ResumeGame()
     {
+        AudioListener.pause = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         escPress = false;
