@@ -36,14 +36,17 @@ public class ObjectCounter : MonoBehaviour
                 {
                     Debug.Log("kontroler nr " + i);
                     turnOffMovement = GameObject.Find("AudioController" + i); // obiektowi turnOff przypisujemy i-ty AudioController
+                    Renderer color = turnOffMovement.GetComponent<Renderer>();
                     //turnOffCamera = turnOffMovement.transform.GetChild(1);
                     if (i != selectedObject) // dla każdego audio controllera innego niż selectedObject, którego zmieniamy za pomocą Tab
                     {
+                        color.material.SetColor("_Color", Color.red);
                         turnOffMovement.GetComponent<Movement>().enabled = false; // wyłączamy skrypt Movement odpowiadający za poruszanie się
                         //turnOffCamera.GetComponent<Camera>().enabled = false;
                     }
                     else
                     {
+                        color.material.SetColor("_Color", Color.green);
                         turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
                         //turnOffCamera.GetComponent<Camera>().enabled = true;
                     }
