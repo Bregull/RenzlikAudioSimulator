@@ -22,7 +22,6 @@ public class Movement : MonoBehaviour
         sceneName = currentScene.name; // przypisanie nazwy sceny do stringa
         if (sceneName != "File Browser") // warunek sprawdzający nazwę sceny
         {
-            //checkKey();
 
             float moveHorizontal = Input.GetAxis("Horizontal"); // sprawdza czy zostały wciśnięte strzałki prawo/lewo lub A/D
             float moveVertical = Input.GetAxis("Vertical"); // sprawdza czy zostały wciśnięte strzałki góra/dół lub W/S
