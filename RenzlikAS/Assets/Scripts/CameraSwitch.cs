@@ -5,7 +5,7 @@ public class CameraSwitch : MonoBehaviour
 {
     public Camera dontDestroyOnLoadCamera;
     public Camera cameraTwo;
-    bool cameraState = false;
+    public bool cameraState = false;
 
 
     void FixedUpdate() //w przeciwieństwie do Update, fixedUpdate cały czas sprawdza w jakim stanie jest scena
@@ -22,7 +22,7 @@ public class CameraSwitch : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.C))
         {
-            if (cameraState == false)
+            if (cameraState == true)
             {
                 dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
                 dontDestroyOnLoadCamera.enabled = true;

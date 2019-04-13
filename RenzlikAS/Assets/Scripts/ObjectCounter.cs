@@ -9,7 +9,8 @@ public class ObjectCounter : MonoBehaviour
     string sceneName; // nazwa sceny
     int selectedObject; // obiekt, który aktualnie jest kontrolowany przez użytkownika
     private GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali, bądź włączali ruch
-    //Transform turnOffCamera;
+    Transform turnOffCamera;
+    bool cameraState = false;
 
     void Start()
     {
@@ -34,21 +35,24 @@ public class ObjectCounter : MonoBehaviour
                 }
                 for (int i = 1; i <= objectNumber; i++) // pętla wykonująca się tyle razy, ile jest obiektów w scenie
                 {
-                    Debug.Log("kontroler nr " + i);
+                    //Debug.Log("kontroler nr " + i);
                     turnOffMovement = GameObject.Find("AudioController" + i); // obiektowi turnOff przypisujemy i-ty AudioController
                     Renderer color = turnOffMovement.GetComponent<Renderer>();
-                    //turnOffCamera = turnOffMovement.transform.GetChild(1);
+                    turnOffCamera = turnOffMovement.transform.GetChild(1);
+                    cameraState = turnOffMovement.GetComponent<CameraSwitch>().cameraState;
+                    Debug.Log(cameraState);
                     if (i != selectedObject) // dla każdego audio controllera innego niż selectedObject, którego zmieniamy za pomocą Tab
                     {
                         color.material.SetColor("_Color", Color.red);
                         turnOffMovement.GetComponent<Movement>().enabled = false; // wyłączamy skrypt Movement odpowiadający za poruszanie się
-                        //turnOffCamera.GetComponent<Camera>().enabled = false;
+                        turnOffCamera.GetComponent<Camera>().enabled = false;
                     }
                     else
                     {
                         color.material.SetColor("_Color", Color.green);
                         turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
-                        //turnOffCamera.GetComponent<Camera>().enabled = true;
+                        if ( cameraState == true )
+                            turnOffCamera.GetComponent<Camera>().enabled = true;
                     }
                 }
             }
