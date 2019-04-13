@@ -6,6 +6,9 @@ public class CameraSwitch : MonoBehaviour
     public Camera dontDestroyOnLoadCamera;
     public Camera cameraTwo;
     public bool cameraState = false;
+    int selectedObjectIndex;
+    GameObject selectedObject;
+    Transform turnOnCamera;
 
 
     void FixedUpdate() //w przeciwieństwie do Update, fixedUpdate cały czas sprawdza w jakim stanie jest scena
@@ -14,8 +17,10 @@ public class CameraSwitch : MonoBehaviour
         if(currentScene.name == "RenzlikAS")
         {
             ChangeCamera();
+            selectedObjectIndex = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject;
+            selectedObject = GameObject.Find("AudioController" + selectedObjectIndex);
+            turnOnCamera = selectedObject.transform.GetChild(1);
         }
-
     }
 
     public void ChangeCamera()
@@ -33,7 +38,8 @@ public class CameraSwitch : MonoBehaviour
             {
                 dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
                 dontDestroyOnLoadCamera.enabled = false;
-                cameraTwo.enabled = true;
+                turnOnCamera.GetComponent<Camera>().enabled = true;
+                //cameraTwo.enabled = true;
                 cameraState = !cameraState;
             }
         }

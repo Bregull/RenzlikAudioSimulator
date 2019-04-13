@@ -7,7 +7,7 @@ public class ObjectCounter : MonoBehaviour
 {
     public int objectNumber = 1; // deklaracja zmiennej, która będzie naliczała ile źródeł dźwięku znajduje się w scenie
     string sceneName; // nazwa sceny
-    int selectedObject; // obiekt, który aktualnie jest kontrolowany przez użytkownika
+    public int selectedObject; // obiekt, który aktualnie jest kontrolowany przez użytkownika
     private GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali, bądź włączali ruch
     Transform turnOffCamera;
     bool cameraState = false;
