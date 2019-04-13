@@ -66,6 +66,12 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClickAddFile()
     {
+        for(int i = 1; i <= numberOfObjects; i++)
+        {
+            GameObject turnOffCamera = GameObject.Find("AudioController" + i);
+            Transform cameraTarget = turnOffCamera.transform.GetChild(1);
+            cameraTarget.GetComponent<Camera>().enabled = false;
+        }
         escPress = false; // zamienia stan klawisza esc
         Time.timeScale = 1f; // przywraca czas do normalnej prędkości 
         GameObject dontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera"); // znajduje kamerę nad graczem

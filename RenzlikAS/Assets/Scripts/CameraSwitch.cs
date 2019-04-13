@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public Camera dontDestroyOnLoadCamera; 
+    public Camera dontDestroyOnLoadCamera;
     public Camera cameraTwo;
 
 
@@ -22,15 +22,18 @@ public class CameraSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V)) // Funkcja podporządkowująca literę "V" do włączenia kamery dontDestroyOnLoad i wyłączenia kamery cameraTwo przy naciśnięciu klawisz
         {
+            dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
             dontDestroyOnLoadCamera.enabled = true;
             cameraTwo.enabled = false;
         }
        
     }
+
     public void ShowCameraTwo() // jak wyżej
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
+            dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
             dontDestroyOnLoadCamera.enabled = false;
             cameraTwo.enabled = true;
         }
