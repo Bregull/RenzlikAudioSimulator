@@ -6,24 +6,14 @@ using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour
 {
 
-    float x, z;
-    public GameObject audioController;
-    bool cameraState = false;
-
+    bool cameraState = false; // tworzy zmienną boolowską która nam mówi o tym jaka kamera jest aktywna
     public float speed;  // prędkość a dokładniej siła jaka zadziała na nasz obiekt
     private Rigidbody rigid; // odnośnik do komponentu Rigidbody
     string sceneName; // nazwa sceny
-    float rotation;
-
-    void Start()
-    {
-        
-        rigid = audioController.GetComponent<Rigidbody>(); // przypisuje komponent Rigidbody z obiektu do zmiennej
-    }
 
     void FixedUpdate()
     {
-        cameraState = GetComponent<CameraSwitch>().cameraState;
+        cameraState = GetComponent<CameraSwitch>().cameraState; // przypisuje zmiennej cameraState zmienną cameraState ze skryptu CameraSwitch
         Scene currentScene = SceneManager.GetActiveScene(); // zmienna która sprawdza aktywną scenę
         sceneName = currentScene.name; // przypisanie nazwy sceny do stringa
         if (sceneName != "File Browser") // warunek sprawdzający nazwę sceny
@@ -35,35 +25,35 @@ public class Movement : MonoBehaviour
 
             if (cameraState == true)
             {
-                if (moveVertical > 0)
+                if (moveVertical > 0) // gdy wartość moveVertical jest dodatnia -> przycisk W / strzałka w górę
                 {
-                    transform.position += new Vector3(transform.forward.x * Time.deltaTime * speed, 0.0f, transform.forward.z * Time.deltaTime * speed);
-                }
-                else if(moveVertical < 0)
+                    transform.position += new Vector3(transform.forward.x * Time.deltaTime * speed, 0.0f, transform.forward.z * Time.deltaTime * speed); // zmienia pozycję obiektu o wektor o wartościach podanych w nawiasach
+                }                                                                                                                                       // transform.forward słuzy do przyjęcia nowego układu współrzędnych dla obiektu, gdzie x,y,z = 0
+                else if(moveVertical < 0)                                                                                                              // Time.deltaTime -> w zależności od tego jak długo trzymamy klawisz
                 {
-                    transform.position += new Vector3(-transform.forward.x * Time.deltaTime * speed, 0.0f, -transform.forward.z * Time.deltaTime * speed);
+                    transform.position += new Vector3(-transform.forward.x * Time.deltaTime * speed, 0.0f, -transform.forward.z * Time.deltaTime * speed); // odwraca znak x oraz z -> obrót o 180 stopni
                 }
                 if(Input.GetKey(KeyCode.LeftShift))
                 {
-                    transform.position += new Vector3(0.0f, speed * Time.deltaTime, 0.0f);
+                    transform.position += new Vector3(0.0f, speed * Time.deltaTime, 0.0f); // poruszanie w górę
                 }
                 else if (Input.GetKey(KeyCode.LeftControl))
                 {
-                    transform.position += new Vector3(0.0f, -speed * Time.deltaTime, 0.0f);
+                    transform.position += new Vector3(0.0f, -speed * Time.deltaTime, 0.0f); // poruszanie w dół
                 }
                 if(moveHorizontal > 0)
                 {
-                    transform.position += new Vector3(transform.forward.z * Time.deltaTime * speed, 0.0f, 0.0f);
+                    transform.position += new Vector3(transform.forward.z * Time.deltaTime * speed, 0.0f, -transform.forward.x * Time.deltaTime * speed); // zamienia tylko z -> obrót o 90 stopni
                 }
                 else if (moveHorizontal < 0)
                 {
-                    transform.position += new Vector3(-transform.forward.z * Time.deltaTime * speed, 0.0f, 0.0f);
+                    transform.position += new Vector3(-transform.forward.z * Time.deltaTime * speed, 0.0f, transform.forward.x * Time.deltaTime * speed); // zamienia tylko x -> obrót o 270 stopni
                 }
 
             }
             else
             {
-                transform.position += movement/2;
+                transform.position += movement/2; // ruch dla kamery znad głowy
             }
         }
     }

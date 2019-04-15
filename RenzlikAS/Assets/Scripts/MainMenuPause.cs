@@ -8,7 +8,7 @@ public class MainMenuPause : MonoBehaviour
     public GameObject pauseMenu; // objekt, odpowiadjący panelowi menu pauzy
     public Button chooseNewFile; // przycisk umożliwiający wybranie nowego pliku audio (usuwa poprzedni)
     public Button addFile; // przycisk umożliwiający dodanie kolejnego pliku audio (nie usuwa poprzedniego)
-    public Button exit;
+    public Button exit; // dodanie przycisku exit do sceny
     int numberOfObjects; // zmienna zliczająca ilośc obiektów w scenie)
 
    
@@ -19,7 +19,7 @@ public class MainMenuPause : MonoBehaviour
         pauseMenu.SetActive(false); // deaktywuje menuPauzy
         chooseNewFile.onClick.AddListener(OnClickNewFile); // przycisk czeka na input użytkownika
         addFile.onClick.AddListener(OnClickAddFile); // przycisk czeka na input użytkownika
-        exit.onClick.AddListener(OnClickExit);
+        exit.onClick.AddListener(OnClickExit); // przycisk czeka na input użytkownika
     }
 
     void Update()
@@ -66,12 +66,12 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClickAddFile()
     {
-        for (int i = 1; i <= numberOfObjects; i++)
+        for (int i = 1; i <= numberOfObjects; i++) // pętla wykona się tyle razy ile jest obiektów w scenie
         {
-            GameObject turnOffCamera = GameObject.Find("AudioController" + i);
-            turnOffCamera.GetComponent<CameraSwitch>().cameraState = false;
-            Transform cameraTarget = turnOffCamera.transform.GetChild(1);
-            cameraTarget.GetComponent<Camera>().enabled = false;
+            GameObject turnOffCamera = GameObject.Find("AudioController" + i); // znajduje AudioController z indeksem 'i'
+            turnOffCamera.GetComponent<CameraSwitch>().cameraState = false; // zmienia stan zmiennej cameraState ze skryptu CameraSwitch na false
+            Transform cameraTarget = turnOffCamera.transform.GetChild(1); // dostęp do kamery zza obiektu
+            cameraTarget.GetComponent<Camera>().enabled = false; // wyłącza kamerę zza obiektu
         }
         escPress = false; // zamienia stan klawisza esc
         Time.timeScale = 1f; // przywraca czas do normalnej prędkości 
@@ -83,16 +83,16 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClickExit()
     {
-        escPress = false;
-        Time.timeScale = 1f;
-        var allObjects = GameObject.FindGameObjectsWithTag("Player");
-        for(int i = 0; i < allObjects.Length; i++)
+        escPress = false; // zmienia stan klawisza Esc
+        Time.timeScale = 1f; // przywraca czas do normalnej prędkosci
+        var allObjects = GameObject.FindGameObjectsWithTag("Player"); // tworzy listę wszystkich obiektów w scenie z tagiem 'Player'
+        for(int i = 0; i < allObjects.Length; i++) // wykonuje sie tyle razy ile obiektów z tagiem 'Player' w scenie
         {
-            Destroy(allObjects[i]);
+            Destroy(allObjects[i]); // usuwa każdy obiekt
         }
         GameObject dontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera"); // znajduje kamerę nad graczem
         Destroy(dontDestroyOnLoadCamera);   // usuwa kamerę nad graczem (aby przy kolejnym wejściu w scenę się kamery nie dublowały)
-        SceneManager.LoadScene("File Browser", LoadSceneMode.Single);
-        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber = 1;
+        SceneManager.LoadScene("File Browser", LoadSceneMode.Single); // zamienia scenę na "File Browser"
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber = 1; // przywraca zmiennej objectNumber ze skryptu ObjectCounter wartość 1
     }
 }

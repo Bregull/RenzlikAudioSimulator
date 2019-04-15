@@ -9,8 +9,8 @@ public class ObjectCounter : MonoBehaviour
     string sceneName; // nazwa sceny
     public int selectedObject; // obiekt, który aktualnie jest kontrolowany przez użytkownika
     private GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali, bądź włączali ruch
-    Transform turnOffCamera;
-    bool cameraState = false;
+    Transform turnOffCamera; // transform służący do włączania / wyłączania kamery
+    bool cameraState = false; // zmiena boolowska mówiąca o tym jaka kamera jest aktualnie aktywna
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class ObjectCounter : MonoBehaviour
 
     void Update()
     {
-        Scene currentScene = SceneManager.GetActiveScene(); 
+        Scene currentScene = SceneManager.GetActiveScene();  // znajduje aktywną scenę
         sceneName = currentScene.name; // otrzymujemy nazwę sceny w string
 
         if (sceneName == "RenzlikAS") // sprawdzamy, czy nazwa sceny to RenzlikAS, aby móc kontrolować obiekt tylko w tej scenie
@@ -37,22 +37,21 @@ public class ObjectCounter : MonoBehaviour
                 {
                     //Debug.Log("kontroler nr " + i);
                     turnOffMovement = GameObject.Find("AudioController" + i); // obiektowi turnOff przypisujemy i-ty AudioController
-                    Renderer color = turnOffMovement.GetComponent<Renderer>();
-                    turnOffCamera = turnOffMovement.transform.GetChild(1);
-                    cameraState = turnOffMovement.GetComponent<CameraSwitch>().cameraState;
-                    Debug.Log(cameraState);
+                    Renderer color = turnOffMovement.GetComponent<Renderer>(); // przypisuje zmiennej color komponent redera dla obiektu
+                    turnOffCamera = turnOffMovement.transform.GetChild(1); // przypisuje turnOffCamera kamerę zza obiektu
+                    cameraState = turnOffMovement.GetComponent<CameraSwitch>().cameraState; // przypisuje cameraState zmienną cameraState ze skryptu CameraSwitch
                     if (i != selectedObject) // dla każdego audio controllera innego niż selectedObject, którego zmieniamy za pomocą Tab
                     {
-                        color.material.SetColor("_Color", Color.red);
+                        color.material.SetColor("_Color", Color.red); // jeśli obiekty nie jest aktywny zmienia kolor na czerwony
                         turnOffMovement.GetComponent<Movement>().enabled = false; // wyłączamy skrypt Movement odpowiadający za poruszanie się
-                        turnOffCamera.GetComponent<Camera>().enabled = false;
+                        turnOffCamera.GetComponent<Camera>().enabled = false; // jeśli obiekt jest nieaktywny, to wyłącza kamerę zza gracza
                     }
                     else
                     {
-                        color.material.SetColor("_Color", Color.green);
+                        color.material.SetColor("_Color", Color.green); // jelsi obiekt jest aktywny to zmienia kolor na zielony
                         turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
-                        if ( cameraState == true )
-                            turnOffCamera.GetComponent<Camera>().enabled = true;
+                        if ( cameraState == true ) // jeśli zmienna cameraState sugeruje, że kamera zza gracza powinna się aktywowac
+                            turnOffCamera.GetComponent<Camera>().enabled = true; // aktywuje kamerę zza gracza
                     }
                 }
             }

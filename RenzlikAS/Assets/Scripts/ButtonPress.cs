@@ -13,7 +13,7 @@ public class ButtonPress : MonoBehaviour
     string[] filePath; // zapisane w tej formie, gdyż Standalone File Browser zwraca nam tablicę string
     string filePath2, fileExtension;  // filePath2 służy do zamiany tablicy string filePath2 na zwykły string, fileExtension rozpoznaje rozszerzenie pliku audio
     public UnityEngine.UI.Button chooseFile;  // dodajemy przycisk do sceny
-    public UnityEngine.UI.Button exit;
+    public UnityEngine.UI.Button exit; // dodajemy przycisk do sceny
     public AudioClip audioClipSelected;  // zapisanie wybranego przez nas utworu muzycznego do zmiennej
     public AudioSource audioSource; // potrzebne do odtworzenia naszego utworu muzycznego
     public GameObject audioController; // obiekt do którego jest przypisane źródło dźwięku
@@ -23,11 +23,11 @@ public class ButtonPress : MonoBehaviour
     void Start()
 
     {
-        GameObject.Find("AudioController").GetComponent<Movement>().enabled = true;
+        GameObject.Find("AudioController").GetComponent<Movement>().enabled = true; // aktywuje skrypt umozliwiający poruszanie się AudioControllera (potrzebne przy dodawaniu kilku obiektów do sceny)
         DontDestroyOnLoad(audioController); // przeniesienie obiektu do drugiej sceny
         DontDestroyOnLoad(dontDestroyOnLoadCamera); // przeniesienie kamery do drugiej sceny
         chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click  
-        exit.onClick.AddListener(ExitGame);
+        exit.onClick.AddListener(ExitGame); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę ExitGame
     }
 
 
@@ -78,19 +78,19 @@ public class ButtonPress : MonoBehaviour
         int objectCounterNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // deklaracja zmiennej która przyjmuje wartość taką, jak ilość obiektów w scenie (zmienna objectNumber)
         audioController.name += objectCounterNumber; // dodaje do nazwy naszego audioControllera odpowiedni numer
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
-        GameObject notTheFirstAudioController = GameObject.Find("AudioController" + objectCounterNumber);
-        Renderer color = notTheFirstAudioController.GetComponent<Renderer>();
+        GameObject notTheFirstAudioController = GameObject.Find("AudioController" + objectCounterNumber); // znajduje n-ty kontroller audio
+        Renderer color = notTheFirstAudioController.GetComponent<Renderer>(); // zmienna odpowiadająca za kolor materiału obiektu
         if (objectCounterNumber > 1)
         {
-            color.material.SetColor("_Color", Color.red);
+            color.material.SetColor("_Color", Color.red); // każdy obiekt który nie jest obiektem pierwszym (aktualnie sterowanym) przyjmuje kolor czerwony
             notTheFirstAudioController.GetComponent<Movement>().enabled = false;  // dla każdego kolejnego obiektu wyłącza skrypt odpowiadający za ruch
         }
         else
-            color.material.SetColor("_Color", Color.green);
+            color.material.SetColor("_Color", Color.green); // aktywny obiekt zmienia kolor na zielony
     }
 
     void ExitGame()
     {
-        UnityEngine.Application.Quit();
+        UnityEngine.Application.Quit(); // kończy działanie aplikacji
     }
 }

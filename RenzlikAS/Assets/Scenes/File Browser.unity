@@ -778,7 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioController: {fileID: 897978614}
-  speed: 10
+  speed: 5
 --- !u!54 &897978620
 Rigidbody:
   m_ObjectHideFlags: 0
