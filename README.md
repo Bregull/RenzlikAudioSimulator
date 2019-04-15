@@ -5,6 +5,8 @@ Aplikacja umożliwiająca umieszczenie źródła dźwięku w przestrzeni.
 
 Program obsługuje formaty .wav oraz .ogg
 
+
+!Pseudo Samouczek
 'Menu start'
   Przyciskiem 'Choose file' wybieramy plik, który będzie odtwarzany. Przycisk 'x' na czerwonym polu zamyka program.
   
