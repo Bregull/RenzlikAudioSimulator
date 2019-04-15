@@ -66,9 +66,10 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClickAddFile()
     {
-        for(int i = 1; i <= numberOfObjects; i++)
+        for (int i = 1; i <= numberOfObjects; i++)
         {
             GameObject turnOffCamera = GameObject.Find("AudioController" + i);
+            turnOffCamera.GetComponent<CameraSwitch>().cameraState = false;
             Transform cameraTarget = turnOffCamera.transform.GetChild(1);
             cameraTarget.GetComponent<Camera>().enabled = false;
         }
