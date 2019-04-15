@@ -53,11 +53,11 @@ public class Movement : MonoBehaviour
                 }
                 if(moveHorizontal > 0)
                 {
-                    transform.position += new Vector3(transform.forward.z * Time.deltaTime * speed, 0.0f, 0.0f);
+                    transform.position += new Vector3(transform.forward.z * Time.deltaTime * speed, 0.0f, -transform.forward.x * Time.deltaTime * speed);
                 }
                 else if (moveHorizontal < 0)
                 {
-                    transform.position += new Vector3(-transform.forward.z * Time.deltaTime * speed, 0.0f, 0.0f);
+                    transform.position += new Vector3(-transform.forward.z * Time.deltaTime * speed, 0.0f, transform.forward.x * Time.deltaTime * speed);
                 }
 
             }

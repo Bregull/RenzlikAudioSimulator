@@ -10,6 +10,7 @@ public class CameraSwitch : MonoBehaviour
     GameObject selectedObject;
     Transform turnOnCamera;
 
+   
 
     void FixedUpdate() //w przeciwieństwie do Update, fixedUpdate cały czas sprawdza w jakim stanie jest scena
     {
@@ -32,7 +33,6 @@ public class CameraSwitch : MonoBehaviour
         }
        
     }
-    public void ShowCameraTwo() // jak wyżej
 
     public void ChangeCamera()
 
