@@ -32,7 +32,7 @@ public class CameraSwitch : MonoBehaviour
                 dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
                 dontDestroyOnLoadCamera.enabled = true;
                 cameraTwo.enabled = false;
-                cameraState = !cameraState;
+                cameraState = false;
             }
             else
             {
@@ -40,7 +40,7 @@ public class CameraSwitch : MonoBehaviour
                 dontDestroyOnLoadCamera.enabled = false;
                 turnOnCamera.GetComponent<Camera>().enabled = true;
                 //cameraTwo.enabled = true;
-                cameraState = !cameraState;
+                cameraState = true;
             }
         }
     }
