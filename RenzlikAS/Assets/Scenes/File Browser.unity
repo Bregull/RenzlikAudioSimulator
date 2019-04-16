@@ -777,7 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2e3b55023d6d4f9b495a4c94a08bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioController: {fileID: 897978614}
   speed: 5
 --- !u!54 &897978620
 Rigidbody:
@@ -1082,7 +1081,6 @@ GameObject:
   - component: {fileID: 1185627389}
   - component: {fileID: 1185627392}
   - component: {fileID: 1185627391}
-  - component: {fileID: 1185627390}
   - component: {fileID: 1185627393}
   m_Layer: 0
   m_Name: Camera
@@ -1105,21 +1103,6 @@ Transform:
   m_Father: {fileID: 897978618}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1185627390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185627388}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acee0001f6603714797e93be6f18e770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraAudioSource: {fileID: 897978618}
-  smoothSpeed: 0.125
-  offset: {x: 0, y: 4, z: -12}
 --- !u!81 &1185627391
 AudioListener:
   m_ObjectHideFlags: 0

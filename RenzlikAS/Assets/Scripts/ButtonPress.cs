@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.Networking;  // pozwala nam na streamowanie muzyki z komputera (lub URL - do sprawdzenia) do naszego projektu Unity
 using UnityEngine.UI;  // obsługa guzika
-using UnityEditor;  // Pozwala nam dodać EditorUtility, z pomocą którego otwieramy panel wyboru pliku, oraz panel błędu.
 using UnityEngine.SceneManagement;  // pozwala nam zarządzać scenami projektu
 using SFB; // implementacja Standalone File Browsera
 using System.Windows.Forms; // potrzebne do wyświetlania error message
@@ -21,7 +20,6 @@ public class ButtonPress : MonoBehaviour
     public Camera cameraTwo; // kamera podążająca za obiektem
 
     void Start()
-
     {
         GameObject.Find("AudioController").GetComponent<Movement>().enabled = true; // aktywuje skrypt umozliwiający poruszanie się AudioControllera (potrzebne przy dodawaniu kilku obiektów do sceny)
         DontDestroyOnLoad(audioController); // przeniesienie obiektu do drugiej sceny
@@ -29,7 +27,6 @@ public class ButtonPress : MonoBehaviour
         chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click  
         exit.onClick.AddListener(ExitGame); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę ExitGame
     }
-
 
     void OnClick()
     {
