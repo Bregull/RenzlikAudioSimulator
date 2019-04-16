@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// ######### SKRYPT DO POPRAWY ##########
 
 public class Movement : MonoBehaviour
 {
 
     bool cameraState = false; // tworzy zmienną boolowską która nam mówi o tym jaka kamera jest aktywna
     public float speed;  // prędkość a dokładniej siła jaka zadziała na nasz obiekt
-    private Rigidbody rigid; // odnośnik do komponentu Rigidbody
     string sceneName; // nazwa sceny
 
     void FixedUpdate()
@@ -33,7 +31,7 @@ public class Movement : MonoBehaviour
                 {
                     transform.position += new Vector3(-transform.forward.x * Time.deltaTime * speed, 0.0f, -transform.forward.z * Time.deltaTime * speed); // odwraca znak x oraz z -> obrót o 180 stopni
                 }
-                if(Input.GetKey(KeyCode.LeftShift))
+                if(Input.GetKey(KeyCode.Space))
                 {
                     transform.position += new Vector3(0.0f, speed * Time.deltaTime, 0.0f); // poruszanie w górę
                 }
