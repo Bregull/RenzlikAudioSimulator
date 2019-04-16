@@ -95,6 +95,5 @@ public class MainMenuPause : MonoBehaviour
         SceneManager.LoadScene("File Browser", LoadSceneMode.Single); // zamienia scenę na "File Browser"
         GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber = 1; // przywraca zmiennej objectNumber ze skryptu ObjectCounter wartość 1
         GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = 1; // przywraca zmiennej selectedObject ze skryptu ObjectCounter wartość 1
-
     }
 }
