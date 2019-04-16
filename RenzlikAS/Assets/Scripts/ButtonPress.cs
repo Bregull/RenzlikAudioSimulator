@@ -75,15 +75,23 @@ public class ButtonPress : MonoBehaviour
         int objectCounterNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // deklaracja zmiennej która przyjmuje wartość taką, jak ilość obiektów w scenie (zmienna objectNumber)
         audioController.name += objectCounterNumber; // dodaje do nazwy naszego audioControllera odpowiedni numer
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
-        GameObject notTheFirstAudioController = GameObject.Find("AudioController" + objectCounterNumber); // znajduje n-ty kontroller audio
-        Renderer color = notTheFirstAudioController.GetComponent<Renderer>(); // zmienna odpowiadająca za kolor materiału obiektu
-        if (objectCounterNumber > 1)
+        for (int i = 1; i <= objectCounterNumber; i++)
         {
-            color.material.SetColor("_Color", Color.red); // każdy obiekt który nie jest obiektem pierwszym (aktualnie sterowanym) przyjmuje kolor czerwony
-            notTheFirstAudioController.GetComponent<Movement>().enabled = false;  // dla każdego kolejnego obiektu wyłącza skrypt odpowiadający za ruch
+            GameObject notTheFirstAudioController = GameObject.Find("AudioController" + i); // znajduje n-ty kontroller audio
+            Renderer color = notTheFirstAudioController.GetComponent<Renderer>(); // zmienna odpowiadająca za kolor materiału obiektu
+
+            if (i == objectCounterNumber)
+            {
+                color.material.SetColor("_Color", Color.green); // każdy obiekt który nie jest obiektem pierwszym (aktualnie sterowanym) przyjmuje kolor czerwony
+                notTheFirstAudioController.GetComponent<Movement>().enabled = true;  // dla każdego kolejnego obiektu wyłącza skrypt odpowiadający za ruch
+            }
+            else
+            {
+                color.material.SetColor("_Color", Color.red); // aktywny obiekt zmienia kolor na zielony
+                notTheFirstAudioController.GetComponent<Movement>().enabled = false;
+            }
         }
-        else
-            color.material.SetColor("_Color", Color.green); // aktywny obiekt zmienia kolor na zielony
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = objectCounterNumber;
     }
 
     void ExitGame()
