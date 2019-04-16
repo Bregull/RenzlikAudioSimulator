@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1369386219}
   - component: {fileID: 1369386220}
+  - component: {fileID: 1369386221}
   m_Layer: 0
   m_Name: ObjectCounter
   m_TagString: Untagged
@@ -331,6 +332,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectNumber: 1
   selectedObject: 0
+--- !u!114 &1369386221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369386218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feab64f2295929f45a6e7109ca6dfc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1658875010
 GameObject:
   m_ObjectHideFlags: 0

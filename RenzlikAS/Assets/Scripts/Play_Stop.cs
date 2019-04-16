@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Play_Stop : MonoBehaviour
 {
-    public Button play;
-    public Button stop;
+    public Button stopPlayButton;
+    public Text buttonText;
     int objectNumber;
     GameObject audioController;
     Transform audioSource;
+    bool stopState;
 
     void Start()
     {
-        play.onClick.AddListener(Play);
-        stop.onClick.AddListener(Stop);
+        stopPlayButton.onClick.AddListener(StopPlay);
     }
 
     void Update()
@@ -22,23 +22,30 @@ public class Play_Stop : MonoBehaviour
         objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
     }
 
-    void Play()
+    void StopPlay()
     {
-        for (int i = 1; i <= objectNumber; i++)
+        if (stopState == false)
         {
-            audioController = GameObject.Find("AudioController" + i);
-            audioSource = audioController.transform.GetChild(0);
-            audioSource.GetComponent<AudioSource>().Play();
+            for (int i = 1; i <= objectNumber; i++)
+            {
+                audioController = GameObject.Find("AudioController" + i);
+                audioSource = audioController.transform.GetChild(0);
+                audioSource.GetComponent<AudioSource>().Stop();
+            }
+            stopState = true;
+            buttonText.text = "PLAY";
         }
-    }
+        else if (stopState == true)
+        {
+            for (int i = 1; i <= objectNumber; i++)
+            {
+                audioController = GameObject.Find("AudioController" + i);
+                audioSource = audioController.transform.GetChild(0);
+                audioSource.GetComponent<AudioSource>().Play();
+            }
+            stopState = false;
+            buttonText.text = "STOP";
+        }
 
-    void Stop()
-    {
-        for (int i = 1; i <= objectNumber; i++)
-        {
-            audioController = GameObject.Find("AudioController" + i);
-            audioSource = audioController.transform.GetChild(0);
-            audioSource.GetComponent<AudioSource>().Stop();
-        }
     }
 }
