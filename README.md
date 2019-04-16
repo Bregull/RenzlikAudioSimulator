@@ -15,4 +15,4 @@ Pseudo Samouczek
   Przycisk 'Add file' dodaje nowe źródło grające do symulatora. Przycisk 'Add new file' pozwala na zamianę ostatnio dodanego pliku.       Przycisk 'x' kasuje wszystkie obiekty w scenie, przenosi użytkownika do 'Menu start'. Klawisz 'Esc' wznawia działanie aplikacji.
   
 'Renzlik Audio Simulator' (Główna Scena)
-  Poruszanie obiektów dostępnę jest za pomocą strzałek oraz klawiszy 'A' 'W' 'S' 'D' w płaszczyźnie. Klawisze 'L Shift' i 'L Ctrl' pozwalają poruszać się góra dół w sfera. Klawisz 'C' pozwala przełączać się pomiędzy kamerami z góry i zza pleców. Klawisz 'Esc' wywołuje 'Menu pauzy'.
+  Poruszanie obiektów dostępnę jest za pomocą strzałek oraz klawiszy 'A' 'W' 'S' 'D' w płaszczyźnie. Klawisze 'Space' i 'L Ctrl' pozwalają poruszać się góra dół w sfera. Klawisz 'C' pozwala przełączać się pomiędzy kamerami z góry i zza pleców. Klawisz 'Esc' wywołuje 'Menu pauzy'.
