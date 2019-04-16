@@ -10,6 +10,7 @@ public class MainMenuPause : MonoBehaviour
     public Button addFile; // przycisk umożliwiający dodanie kolejnego pliku audio (nie usuwa poprzedniego)
     public Button exit; // dodanie przycisku exit do sceny
     int numberOfObjects; // zmienna zliczająca ilośc obiektów w scenie)
+    int selectedObject;
 
    
     void Start()
@@ -57,7 +58,12 @@ public class MainMenuPause : MonoBehaviour
     {
         escPress = false; // zamienia stan klawisza esc
         Time.timeScale = 1f; // przywraca czas do normalnej prędkości
-        GameObject audioController = GameObject.Find("AudioController" + numberOfObjects); // znajduje najmłodszy audioControlller
+        selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject;
+        GameObject audioController = GameObject.Find("AudioController" + selectedObject); // znajduje najmłodszy audioControlller
+        for(int i = selectedObject + 1; i <= numberOfObjects; i++)
+        {
+            GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1);
+        }
         Destroy(audioController); // usuwa najmłodszy audioController
         GameObject dontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera"); // znajduje kamerę nad graczem
         Destroy(dontDestroyOnLoadCamera); // usuwa kamerę nad graczem (aby przy kolejnym wejściu w scenę się kamery nie dublowały)
