@@ -1759,6 +1759,11 @@ PrefabInstance:
       propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1538460968663044690, guid: fc9652dc7535d0841b2a67795c83dd06,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1538460968663044693, guid: fc9652dc7535d0841b2a67795c83dd06,
         type: 3}
       propertyPath: m_Name

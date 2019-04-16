@@ -15,7 +15,6 @@ public class Play_Stop : MonoBehaviour
     {
         play.onClick.AddListener(Play);
         stop.onClick.AddListener(Stop);
-
     }
 
     void Update()
@@ -32,7 +31,6 @@ public class Play_Stop : MonoBehaviour
             audioSource.GetComponent<AudioSource>().Play();
         }
     }
-
 
     void Stop()
     {
