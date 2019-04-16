@@ -9,6 +9,7 @@ public class MainMenuPause : MonoBehaviour
     public Button chooseNewFile; // przycisk umożliwiający wybranie nowego pliku audio (usuwa poprzedni)
     public Button addFile; // przycisk umożliwiający dodanie kolejnego pliku audio (nie usuwa poprzedniego)
     public Button exit; // dodanie przycisku exit do sceny
+    public Button deleteFile;
     int numberOfObjects; // zmienna zliczająca ilośc obiektów w scenie)
     int selectedObject;
 
@@ -21,6 +22,7 @@ public class MainMenuPause : MonoBehaviour
         chooseNewFile.onClick.AddListener(OnClickNewFile); // przycisk czeka na input użytkownika
         addFile.onClick.AddListener(OnClickAddFile); // przycisk czeka na input użytkownika
         exit.onClick.AddListener(OnClickExit); // przycisk czeka na input użytkownika
+        deleteFile.onClick.AddListener(OnClickDeleteFile);
     }
 
     void Update()
@@ -85,6 +87,20 @@ public class MainMenuPause : MonoBehaviour
         Destroy(dontDestroyOnLoadCamera);   // usuwa kamerę nad graczem (aby przy kolejnym wejściu w scenę się kamery nie dublowały)
         SceneManager.LoadScene("File Browser", LoadSceneMode.Single);   // wraca do sceny File Browser
         GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber++; // inkrementuje objectCounter, by przy wybraniu następnego źródła dźwięku przyjął indeks o jeden większy
+    }
+
+    void OnClickDeleteFile()
+    {
+        selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject;
+        GameObject audioController = GameObject.Find("AudioController" + selectedObject); // znajduje najmłodszy audioControlller
+        for (int i = selectedObject + 1; i <= numberOfObjects; i++)
+        {
+            GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1);
+        }
+        Destroy(audioController); // usuwa najmłodszy audioController
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber--;
+        numberOfObjects--;
+        Resume();
     }
 
     void OnClickExit()
