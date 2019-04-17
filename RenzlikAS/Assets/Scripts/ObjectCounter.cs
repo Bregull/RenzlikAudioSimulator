@@ -28,32 +28,40 @@ public class ObjectCounter : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))  // naciśnięcie klawisza Tab
             {
-                selectedObject -= 1; // zmiejszamy selectedObject o jeden aby cyrklować po obiektach
-                if (selectedObject == 0) // jeśli wynosi zero, to ponownie wracamy na wartość maksymalną
-                {
-                    selectedObject = objectNumber; // wartość maksymalna równa liczbie obiektów
-                }
-                for (int i = 1; i <= objectNumber; i++) // pętla wykonująca się tyle razy, ile jest obiektów w scenie
-                {
-                    turnOffMovement = GameObject.Find("AudioController" + i); // obiektowi turnOff przypisujemy i-ty AudioController
-                    Renderer color = turnOffMovement.GetComponent<Renderer>(); // przypisuje zmiennej color komponent redera dla obiektu
-                    turnOffCamera = turnOffMovement.transform.GetChild(1); // przypisuje turnOffCamera kamerę zza obiektu
-                    cameraState = turnOffMovement.GetComponent<CameraSwitch>().cameraState; // przypisuje cameraState zmienną cameraState ze skryptu CameraSwitch
-                    if (i != selectedObject) // dla każdego audio controllera innego niż selectedObject, którego zmieniamy za pomocą Tab
-                    {
-                        color.material.SetColor("_Color", Color.red); // jeśli obiekty nie jest aktywny zmienia kolor na czerwony
-                        turnOffMovement.GetComponent<Movement>().enabled = false; // wyłączamy skrypt Movement odpowiadający za poruszanie się
-                        turnOffCamera.GetComponent<Camera>().enabled = false; // jeśli obiekt jest nieaktywny, to wyłącza kamerę zza gracza
-                    }
-                    else
-                    {
-                        color.material.SetColor("_Color", Color.green); // jelsi obiekt jest aktywny to zmienia kolor na zielony
-                        turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
-                        if ( cameraState == true ) // jeśli zmienna cameraState sugeruje, że kamera zza gracza powinna się aktywowac
-                            turnOffCamera.GetComponent<Camera>().enabled = true; // aktywuje kamerę zza gracza
-                    }
-                }
+                ChangePlayer();
+            }
+        }
+
+    }
+
+    public void ChangePlayer()
+    {
+        selectedObject -= 1; // zmiejszamy selectedObject o jeden aby cyrklować po obiektach
+        if (selectedObject <= 0) // jeśli wynosi zero, to ponownie wracamy na wartość maksymalną
+        {
+            selectedObject = objectNumber; // wartość maksymalna równa liczbie obiektów
+        }
+        for (int i = 1; i <= objectNumber; i++) // pętla wykonująca się tyle razy, ile jest obiektów w scenie
+        {
+            turnOffMovement = GameObject.Find("AudioController" + i); // obiektowi turnOff przypisujemy i-ty AudioController
+            Renderer color = turnOffMovement.GetComponent<Renderer>(); // przypisuje zmiennej color komponent redera dla obiektu
+            turnOffCamera = turnOffMovement.transform.GetChild(1); // przypisuje turnOffCamera kamerę zza obiektu
+            cameraState = turnOffMovement.GetComponent<CameraSwitch>().cameraState; // przypisuje cameraState zmienną cameraState ze skryptu CameraSwitch
+            if (i != selectedObject) // dla każdego audio controllera innego niż selectedObject, którego zmieniamy za pomocą Tab
+            {
+                color.material.SetColor("_Color", Color.red); // jeśli obiekty nie jest aktywny zmienia kolor na czerwony
+                turnOffMovement.GetComponent<Movement>().enabled = false; // wyłączamy skrypt Movement odpowiadający za poruszanie się
+                turnOffCamera.GetComponent<Camera>().enabled = false; // jeśli obiekt jest nieaktywny, to wyłącza kamerę zza gracza
+            }
+            else
+            {
+                Debug.Log(turnOffMovement.name);
+                color.material.SetColor("_Color", Color.green); // jelsi obiekt jest aktywny to zmienia kolor na zielony
+                turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
+                if (cameraState == true) // jeśli zmienna cameraState sugeruje, że kamera zza gracza powinna się aktywowac
+                    turnOffCamera.GetComponent<Camera>().enabled = true; // aktywuje kamerę zza gracza
             }
         }
     }
+
 }

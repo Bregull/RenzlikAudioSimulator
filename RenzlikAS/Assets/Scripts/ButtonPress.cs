@@ -22,6 +22,14 @@ public class ButtonPress : MonoBehaviour
     void Start()
     {
         GameObject.Find("AudioController").GetComponent<Movement>().enabled = true; // aktywuje skrypt umozliwiający poruszanie się AudioControllera (potrzebne przy dodawaniu kilku obiektów do sceny)
+        int numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
+        if (numberOfObjects > 1)
+        {
+            for (int i = 1; i < numberOfObjects; i++)
+            {
+                GameObject.Find("AudioController" + i).GetComponent<CameraSwitch>().cameraState = false;
+            }
+        }
         DontDestroyOnLoad(audioController); // przeniesienie obiektu do drugiej sceny
         DontDestroyOnLoad(dontDestroyOnLoadCamera); // przeniesienie kamery do drugiej sceny
         chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click  

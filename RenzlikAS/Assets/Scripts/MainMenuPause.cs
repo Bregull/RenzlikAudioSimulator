@@ -10,6 +10,7 @@ public class MainMenuPause : MonoBehaviour
     public Button addFile; // przycisk umożliwiający dodanie kolejnego pliku audio (nie usuwa poprzedniego)
     public Button exit; // dodanie przycisku exit do sceny
     public Button deleteFile;
+    public Button resumeButton;
     int numberOfObjects; // zmienna zliczająca ilośc obiektów w scenie)
     int selectedObject;
 
@@ -23,6 +24,7 @@ public class MainMenuPause : MonoBehaviour
         addFile.onClick.AddListener(OnClickAddFile); // przycisk czeka na input użytkownika
         exit.onClick.AddListener(OnClickExit); // przycisk czeka na input użytkownika
         deleteFile.onClick.AddListener(OnClickDeleteFile);
+        resumeButton.onClick.AddListener(OnClickResumeButton);
     }
 
     void Update()
@@ -58,15 +60,25 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClickNewFile() // gdy kilkniemy w przycisk ChooseNewFile
     {
-        escPress = false; // zamienia stan klawisza esc
-        Time.timeScale = 1f; // przywraca czas do normalnej prędkości
         selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject;
         GameObject audioController = GameObject.Find("AudioController" + selectedObject); // znajduje najmłodszy audioControlller
-        for(int i = selectedObject + 1; i <= numberOfObjects; i++)
+        Destroy(audioController); // usuwa najmłodszy audioController
+
+        for (int i = selectedObject + 1; i <= numberOfObjects; i++)
         {
             GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1);
         }
-        Destroy(audioController); // usuwa najmłodszy audioController
+        numberOfObjects--;
+        for (int i = 1; i <= numberOfObjects; i++) // pętla wykona się tyle razy ile jest obiektów w scenie
+        {
+            GameObject turnOffCamera = GameObject.Find("AudioController" + i); // znajduje AudioController z indeksem 'i'
+            turnOffCamera.GetComponent<CameraSwitch>().cameraState = false; // zmienia stan zmiennej cameraState ze skryptu CameraSwitch na false
+            Transform cameraTarget = turnOffCamera.transform.GetChild(1); // dostęp do kamery zza obiektu
+            cameraTarget.GetComponent<Camera>().enabled = false; // wyłącza kamerę zza obiektu
+            Debug.Log("AudioController " + i);
+        }
+        escPress = false; // zamienia stan klawisza esc
+        Time.timeScale = 1f; // przywraca czas do normalnej prędkości
         GameObject dontDestroyOnLoadCamera = GameObject.Find("DontDestroyOnLoadCamera"); // znajduje kamerę nad graczem
         Destroy(dontDestroyOnLoadCamera); // usuwa kamerę nad graczem (aby przy kolejnym wejściu w scenę się kamery nie dublowały)
         SceneManager.LoadScene("File Browser", LoadSceneMode.Single); // wraca do sceny File Browser
@@ -91,16 +103,32 @@ public class MainMenuPause : MonoBehaviour
 
     void OnClickDeleteFile()
     {
-        selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject;
-        GameObject audioController = GameObject.Find("AudioController" + selectedObject); // znajduje najmłodszy audioControlller
-        for (int i = selectedObject + 1; i <= numberOfObjects; i++)
+        if (numberOfObjects > 1)
         {
-            GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1);
+            selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject;
+            GameObject audioController = GameObject.Find("AudioController" + selectedObject); // znajduje najmłodszy audioControlller
+            Destroy(audioController); // usuwa najmłodszy audioController
+            for (int i = selectedObject + 1; i <= numberOfObjects; i++)
+            {
+                GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1);
+            }
+            GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber--;
+            numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
+            GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().ChangePlayer();
+            Resume();
         }
-        Destroy(audioController); // usuwa najmłodszy audioController
-        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber--;
-        numberOfObjects--;
-        Resume();
+        else
+        {
+            Debug.Log("It's the only object, try replacing it");
+        }
+    }
+
+    void OnClickResumeButton()
+    {
+        AudioListener.pause = false; // uruchamia odtwarzanie dźwięków
+        pauseMenu.SetActive(false); // wyłącza panel menu pauzy
+        Time.timeScale = 1f; // przywraca czas do normalnej prędkości
+        escPress = false; // zamienia stan klawisza esc
     }
 
     void OnClickExit()
