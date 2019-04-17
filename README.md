@@ -12,7 +12,7 @@ Pseudo Samouczek
   Przyciskiem 'Choose file' wybieramy plik, który będzie odtwarzany. Przycisk 'x' na czerwonym polu zamyka program.
   
 'Menu pauzy'
-  Przycisk 'Add file' dodaje nowe źródło grające do symulatora. Przycisk 'Add new file' pozwala na zamianę ostatnio dodanego pliku.       Przycisk 'x' kasuje wszystkie obiekty w scenie, przenosi użytkownika do 'Menu start'. Klawisz 'Esc' wznawia działanie aplikacji.
+  Przycisk 'Add New File' dodaje nowe źródło grające do symulatora. Przycisk 'Replace Selected File' pozwala na zamianę aktywnego pliku. Przycisk 'Delete Selected File' pozwala na usunięcie wybranego pliku ze sceny. Przycisk 'Quit' przenosi użytkownika do 'Menu start'. Klawisz 'Esc', oraz przycisk 'X' wznawiają działanie aplikacji.
   
 'Renzlik Audio Simulator' (Główna Scena)
   Poruszanie obiektów dostępnę jest za pomocą strzałek oraz klawiszy 'A' 'W' 'S' 'D' w płaszczyźnie. Klawisze 'Space' i 'L Ctrl' pozwalają poruszać się góra dół w sfera. Klawisz 'C' pozwala przełączać się pomiędzy kamerami z góry i zza pleców. Klawisz 'Esc' wywołuje 'Menu pauzy'.
