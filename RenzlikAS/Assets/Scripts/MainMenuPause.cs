@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Windows.Forms;
 
 public class MainMenuPause : MonoBehaviour
 {
     private static bool escPress = false; // zmienna odpowiadająca stanowi klawisza Esc
     public GameObject pauseMenu; // objekt, odpowiadjący panelowi menu pauzy
-    public Button chooseNewFile; // przycisk umożliwiający wybranie nowego pliku audio (usuwa poprzedni)
-    public Button addFile; // przycisk umożliwiający dodanie kolejnego pliku audio (nie usuwa poprzedniego)
-    public Button exit; // dodanie przycisku exit do sceny
-    public Button deleteFile;
-    public Button resumeButton;
+    public UnityEngine.UI.Button chooseNewFile; // przycisk umożliwiający wybranie nowego pliku audio (usuwa poprzedni)
+    public UnityEngine.UI.Button addFile; // przycisk umożliwiający dodanie kolejnego pliku audio (nie usuwa poprzedniego)
+    public UnityEngine.UI.Button exit; // dodanie przycisku exit do sceny
+    public UnityEngine.UI.Button deleteFile;
+    public UnityEngine.UI.Button resumeButton;
     int numberOfObjects; // zmienna zliczająca ilośc obiektów w scenie)
     int selectedObject;
 
@@ -110,16 +111,16 @@ public class MainMenuPause : MonoBehaviour
             Destroy(audioController); // usuwa najmłodszy audioController
             for (int i = selectedObject + 1; i <= numberOfObjects; i++)
             {
-                GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1);
+                GameObject.Find("AudioController" + i).name = "AudioController" + (i - 1); // przesuwa indeks każdego obiektu większego od usuniętego o jeden w dół
             }
-            GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber--;
-            numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
-            GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().ChangePlayer();
-            Resume();
+            GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber--; // zmniejsza zmienną naliczająca ilość obiektów w scenie o jeden
+            numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // przypisuje zmiennej lokalnej numberOfObjects wartość liczby obiektów w scenie
+            GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().ChangePlayer(); // wywołuje funkcję zmiany obiektu ze skryptu ObjectCounter.cs
+            Resume(); // wznawia grę
         }
         else
         {
-            Debug.Log("It's the only object, try replacing it");
+            MessageBox.Show("There is only one object in the scene, try replacing it");
         }
     }
 

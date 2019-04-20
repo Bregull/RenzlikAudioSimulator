@@ -28,7 +28,7 @@ public class ObjectCounter : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))  // naciśnięcie klawisza Tab
             {
-                ChangePlayer();
+                ChangePlayer(); // funkcja zamieinająca graczy
             }
         }
 

@@ -22,8 +22,8 @@ public class ButtonPress : MonoBehaviour
     void Start()
     {
         GameObject.Find("AudioController").GetComponent<Movement>().enabled = true; // aktywuje skrypt umozliwiający poruszanie się AudioControllera (potrzebne przy dodawaniu kilku obiektów do sceny)
-        int numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
-        if (numberOfObjects > 1)
+        int numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // ilość obiektów do pętli poniżej
+        if (numberOfObjects > 1) // pętla zmieniająca stan cameraState -> pojawiały się bugi ### ZNAJDŹ PRZYCZYNĘ
         {
             for (int i = 1; i < numberOfObjects; i++)
             {
@@ -96,10 +96,10 @@ public class ButtonPress : MonoBehaviour
             else
             {
                 color.material.SetColor("_Color", Color.red); // aktywny obiekt zmienia kolor na zielony
-                notTheFirstAudioController.GetComponent<Movement>().enabled = false;
+                notTheFirstAudioController.GetComponent<Movement>().enabled = false; // wyłącza ruch każdego obiektu oprócz najmłodszego 
             }
         }
-        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = objectCounterNumber;
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = objectCounterNumber; // aktywuje najmłodszy obiekt
     }
 
     void ExitGame()
