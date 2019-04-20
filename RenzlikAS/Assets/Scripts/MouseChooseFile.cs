@@ -3,44 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ObjectCounter : MonoBehaviour
+public class MouseChooseFile : MonoBehaviour
 {
-    public int objectNumber = 1; // deklaracja zmiennej, która będzie naliczała ile źródeł dźwięku znajduje się w scenie
-    string sceneName; // nazwa sceny
-    public int selectedObject; // obiekt, który aktualnie jest kontrolowany przez użytkownika
-    private GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali, bądź włączali ruch
+    bool objectClick;
+    Scene currentScene;
+    string sceneName;
+    Camera dontDestroyOnLoadCamera;
+    GameObject turnOffMovement;
     Transform turnOffCamera; // transform służący do włączania / wyłączania kamery
     bool cameraState = false; // zmiena boolowska mówiąca o tym jaka kamera jest aktualnie aktywna
 
-    void Start()
-    {
-        DontDestroyOnLoad(this); // przenosimy obiekt ObjectCounter do następnej sceny, w celu utrzymiana zmiennej objectNumber
-        SceneManager.LoadScene("File Browser", LoadSceneMode.Single); // zmieniamy scenę na File Browser
-        selectedObject = objectNumber; // przy starcie selectedObject przyjmuje wartość 1
-    }
 
-    void Update()
+    void FixedUpdate()
     {
-        Scene currentScene = SceneManager.GetActiveScene();  // znajduje aktywną scenę
-        sceneName = currentScene.name; // otrzymujemy nazwę sceny w string
-
-        if (sceneName == "RenzlikAS") // sprawdzamy, czy nazwa sceny to RenzlikAS, aby móc kontrolować obiekt tylko w tej scenie
+        currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+        if (sceneName == "RenzlikAS")
         {
-            if (Input.GetKeyDown(KeyCode.Tab))  // naciśnięcie klawisza Tab
+            dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
+            if (Input.GetMouseButtonDown(0))
             {
-                ChangePlayer(); // funkcja zamieinająca graczy
+                int objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
+                RaycastHit hit;
+                Ray ray = dontDestroyOnLoadCamera.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.rigidbody != null)
+                    {
+                        for (int i = 1; i <= objectNumber; i++)
+                        {
+                            if (hit.rigidbody.name == "AudioController" + i)
+                            {
+                                ChangePlayer(i);
+                            }
+                        }
+                    }
+                }
             }
         }
-
     }
 
-    public void ChangePlayer()
+    void ChangePlayer(int selectedObject)
     {
-        selectedObject -= 1; // zmiejszamy selectedObject o jeden aby cyrklować po obiektach
-        if (selectedObject <= 0) // jeśli wynosi zero, to ponownie wracamy na wartość maksymalną
-        {
-            selectedObject = objectNumber; // wartość maksymalna równa liczbie obiektów
-        }
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = selectedObject;
+        int objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
+
         for (int i = 1; i <= objectNumber; i++) // pętla wykonująca się tyle razy, ile jest obiektów w scenie
         {
             turnOffMovement = GameObject.Find("AudioController" + i); // obiektowi turnOff przypisujemy i-ty AudioController
@@ -55,7 +63,6 @@ public class ObjectCounter : MonoBehaviour
             }
             else
             {
-                Debug.Log(turnOffMovement.name);
                 color.material.SetColor("_Color", Color.green); // jelsi obiekt jest aktywny to zmienia kolor na zielony
                 turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
                 if (cameraState == true) // jeśli zmienna cameraState sugeruje, że kamera zza gracza powinna się aktywowac
@@ -63,5 +70,4 @@ public class ObjectCounter : MonoBehaviour
             }
         }
     }
-
 }

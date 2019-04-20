@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.Networking;  // pozwala nam na streamowanie muzyki z komputera (lub URL - do sprawdzenia) do naszego projektu Unity
 using UnityEngine.UI;  // obsługa guzika
-using UnityEditor;  // Pozwala nam dodać EditorUtility, z pomocą którego otwieramy panel wyboru pliku, oraz panel błędu.
 using UnityEngine.SceneManagement;  // pozwala nam zarządzać scenami projektu
 using SFB; // implementacja Standalone File Browsera
 using System.Windows.Forms; // potrzebne do wyświetlania error message
@@ -13,7 +12,7 @@ public class ButtonPress : MonoBehaviour
     string[] filePath; // zapisane w tej formie, gdyż Standalone File Browser zwraca nam tablicę string
     string filePath2, fileExtension;  // filePath2 służy do zamiany tablicy string filePath2 na zwykły string, fileExtension rozpoznaje rozszerzenie pliku audio
     public UnityEngine.UI.Button chooseFile;  // dodajemy przycisk do sceny
-    public UnityEngine.UI.Button exit;
+    public UnityEngine.UI.Button exit; // dodajemy przycisk do sceny
     public AudioClip audioClipSelected;  // zapisanie wybranego przez nas utworu muzycznego do zmiennej
     public AudioSource audioSource; // potrzebne do odtworzenia naszego utworu muzycznego
     public GameObject audioController; // obiekt do którego jest przypisane źródło dźwięku
@@ -21,15 +20,21 @@ public class ButtonPress : MonoBehaviour
     public Camera cameraTwo; // kamera podążająca za obiektem
 
     void Start()
-
     {
-        GameObject.Find("AudioController").GetComponent<Movement>().enabled = true;
+        GameObject.Find("AudioController").GetComponent<Movement>().enabled = true; // aktywuje skrypt umozliwiający poruszanie się AudioControllera (potrzebne przy dodawaniu kilku obiektów do sceny)
+        int numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // ilość obiektów do pętli poniżej
+        if (numberOfObjects > 1) // pętla zmieniająca stan cameraState -> pojawiały się bugi ### ZNAJDŹ PRZYCZYNĘ
+        {
+            for (int i = 1; i < numberOfObjects; i++)
+            {
+                GameObject.Find("AudioController" + i).GetComponent<CameraSwitch>().cameraState = false;
+            }
+        }
         DontDestroyOnLoad(audioController); // przeniesienie obiektu do drugiej sceny
         DontDestroyOnLoad(dontDestroyOnLoadCamera); // przeniesienie kamery do drugiej sceny
         chooseFile.onClick.AddListener(OnClick); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę On_Click  
-        exit.onClick.AddListener(ExitGame);
+        exit.onClick.AddListener(ExitGame); // button "czeka" na naciśnięcie przez użytkownika, oraz po naciśnięciu wykonuje metodę ExitGame
     }
-
 
     void OnClick()
     {
@@ -49,7 +54,8 @@ public class ButtonPress : MonoBehaviour
             {
                 break; // kończy pętlę
             }
-
+            MessageBox.Show("Nieobsługiwany format pliku.\nWybierz jeszcze raz."); // error
+            
             filePath = StandaloneFileBrowser.OpenFilePanel("Wybierz utwór", "", "", false); // ponowny wybór pliku
             filePath2 = string.Concat(filePath); // ponowna konwersja
             fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // ponowna analiza rozszerzenia
@@ -77,19 +83,27 @@ public class ButtonPress : MonoBehaviour
         int objectCounterNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // deklaracja zmiennej która przyjmuje wartość taką, jak ilość obiektów w scenie (zmienna objectNumber)
         audioController.name += objectCounterNumber; // dodaje do nazwy naszego audioControllera odpowiedni numer
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
-        GameObject notTheFirstAudioController = GameObject.Find("AudioController" + objectCounterNumber);
-        Renderer color = notTheFirstAudioController.GetComponent<Renderer>();
-        if (objectCounterNumber > 1)
+        for (int i = 1; i <= objectCounterNumber; i++)
         {
-            color.material.SetColor("_Color", Color.red);
-            notTheFirstAudioController.GetComponent<Movement>().enabled = false;  // dla każdego kolejnego obiektu wyłącza skrypt odpowiadający za ruch
+            GameObject notTheFirstAudioController = GameObject.Find("AudioController" + i); // znajduje n-ty kontroller audio
+            Renderer color = notTheFirstAudioController.GetComponent<Renderer>(); // zmienna odpowiadająca za kolor materiału obiektu
+
+            if (i == objectCounterNumber)
+            {
+                color.material.SetColor("_Color", Color.green); // każdy obiekt który nie jest obiektem pierwszym (aktualnie sterowanym) przyjmuje kolor czerwony
+                notTheFirstAudioController.GetComponent<Movement>().enabled = true;  // dla każdego kolejnego obiektu wyłącza skrypt odpowiadający za ruch
+            }
+            else
+            {
+                color.material.SetColor("_Color", Color.red); // aktywny obiekt zmienia kolor na zielony
+                notTheFirstAudioController.GetComponent<Movement>().enabled = false; // wyłącza ruch każdego obiektu oprócz najmłodszego 
+            }
         }
-        else
-            color.material.SetColor("_Color", Color.green);
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = objectCounterNumber; // aktywuje najmłodszy obiekt
     }
 
     void ExitGame()
     {
-        UnityEngine.Application.Quit();
+        UnityEngine.Application.Quit(); // kończy działanie aplikacji
     }
 }
