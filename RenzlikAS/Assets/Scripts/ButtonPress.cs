@@ -27,7 +27,7 @@ public class ButtonPress : MonoBehaviour
         {
             for (int i = 1; i < numberOfObjects; i++)
             {
-                GameObject.Find("AudioController" + i).GetComponent<CameraSwitch>().cameraState = false;
+                GameObject.Find("AudioController" + i).GetComponent<CameraSwitch>().cameraState = false; // zmienia cameraState na false -> ZNAJDŹ PRZYCZYNĘ
             }
         }
         DontDestroyOnLoad(audioController); // przeniesienie obiektu do drugiej sceny

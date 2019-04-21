@@ -8,7 +8,7 @@ public class ObjectCounter : MonoBehaviour
     public int objectNumber = 1; // deklaracja zmiennej, która będzie naliczała ile źródeł dźwięku znajduje się w scenie
     string sceneName; // nazwa sceny
     public int selectedObject; // obiekt, który aktualnie jest kontrolowany przez użytkownika
-    private GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali, bądź włączali ruch
+    private GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali bądź włączali ruch
     Transform turnOffCamera; // transform służący do włączania / wyłączania kamery
     bool cameraState = false; // zmiena boolowska mówiąca o tym jaka kamera jest aktualnie aktywna
 
@@ -55,7 +55,6 @@ public class ObjectCounter : MonoBehaviour
             }
             else
             {
-                Debug.Log(turnOffMovement.name);
                 color.material.SetColor("_Color", Color.green); // jelsi obiekt jest aktywny to zmienia kolor na zielony
                 turnOffMovement.GetComponent<Movement>().enabled = true; // włączamy skrypt Movement odpowiadający za poruszanie się
                 if (cameraState == true) // jeśli zmienna cameraState sugeruje, że kamera zza gracza powinna się aktywowac

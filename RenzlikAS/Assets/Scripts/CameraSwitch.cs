@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public Camera dontDestroyOnLoadCamera; // kamera z widokiem ponad głową
+    public Camera dontDestroyOnLoadCamera; // kamera z widokiem znad głowy
     public Camera cameraTwo; // kamera zza pleców
     public bool cameraState = false; // stanKamery --> false - nad głową, true - zza pleców
     int selectedObjectIndex; // numer/indeks wybranego obiektu

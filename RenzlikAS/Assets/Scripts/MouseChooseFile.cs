@@ -5,37 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class MouseChooseFile : MonoBehaviour
 {
-    bool objectClick;
-    Scene currentScene;
-    string sceneName;
-    Camera dontDestroyOnLoadCamera;
-    GameObject turnOffMovement;
+    Scene currentScene; // infomracja o aktualnej scenie
+    string sceneName; // nazwa aktywnej sceny
+    Camera dontDestroyOnLoadCamera; // kamera z widokiem znad głowy
+    GameObject turnOffMovement; // obiekt, z którego później będziemy wyłączali, bądź włączali ruch
     Transform turnOffCamera; // transform służący do włączania / wyłączania kamery
     bool cameraState = false; // zmiena boolowska mówiąca o tym jaka kamera jest aktualnie aktywna
 
 
     void FixedUpdate()
     {
-        currentScene = SceneManager.GetActiveScene();
-        sceneName = currentScene.name;
-        if (sceneName == "RenzlikAS")
+        currentScene = SceneManager.GetActiveScene(); // znajduje aktywną scenę
+        sceneName = currentScene.name; // przypisuje zmiennej nazwę aktywnej sceny
+        if (sceneName == "RenzlikAS") // jeśli nazwa sceny = "RenzlikAS"
         {
-            dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>();
-            if (Input.GetMouseButtonDown(0))
+            dontDestroyOnLoadCamera = GameObject.FindWithTag("ObjectCamera").GetComponent<Camera>(); // znajduję kamerę znad głowy
+            if (Input.GetMouseButtonDown(0)) // przy wciśnięciu lewego klawisza myszy
             {
-                int objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
-                RaycastHit hit;
-                Ray ray = dontDestroyOnLoadCamera.ScreenPointToRay(Input.mousePosition);
+                int objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // znajduje liczbę obiektów w scenie
+                RaycastHit hit; // zmienna typu RaycastHit
+                Ray ray = dontDestroyOnLoadCamera.ScreenPointToRay(Input.mousePosition); // "cień" rzucony przez naciśnięcie myszy
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit)) // jeżeli cień rzucony przez zmienną 'ray' ląduje na obiekcie
                 {
-                    if (hit.rigidbody != null)
+                    if (hit.rigidbody != null) // na obiekcie typu rigidbody
                     {
-                        for (int i = 1; i <= objectNumber; i++)
+                        for (int i = 1; i <= objectNumber; i++) // pętla przechodząca przez ilość obiektów w scenie
                         {
-                            if (hit.rigidbody.name == "AudioController" + i)
+                            if (hit.rigidbody.name == "AudioController" + i) // jeżeli nazwa oibektu na którego pada 'cień' pokrywa się z nazwą AudioControllera
                             {
-                                ChangePlayer(i);
+                                ChangePlayer(i); // wykonaj metodę ChangePlayer z argumentem i
                             }
                         }
                     }
@@ -46,8 +45,8 @@ public class MouseChooseFile : MonoBehaviour
 
     void ChangePlayer(int selectedObject)
     {
-        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = selectedObject;
-        int objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber;
+        GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = selectedObject; // zmienia selectedObject ze skryptu ObjectCounter na wartość i z metody FixedUpdate
+        int objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // przypisuje objectNumber ilość obiektów w scenie
 
         for (int i = 1; i <= objectNumber; i++) // pętla wykonująca się tyle razy, ile jest obiektów w scenie
         {
