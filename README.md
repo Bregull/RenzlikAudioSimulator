@@ -16,3 +16,6 @@ Pseudo Samouczek
   
 'Renzlik Audio Simulator' (Główna Scena)
   Poruszanie obiektów dostępnę jest za pomocą strzałek oraz klawiszy 'A' 'W' 'S' 'D' w płaszczyźnie. Klawisze 'Space' i 'L Ctrl' pozwalają poruszać się góra dół w sfera. Klawisz 'C' pozwala przełączać się pomiędzy kamerami z góry i zza pleców. Klawisz 'Esc' wywołuje 'Menu pauzy'.
+  
+  Dokumentacja:
+    http://htmlpreview.github.io/?https://github.com/Bregull/RenzlikAudioSimulator/blob/master/RenzlikAS_Documentation_HTML/index.html
