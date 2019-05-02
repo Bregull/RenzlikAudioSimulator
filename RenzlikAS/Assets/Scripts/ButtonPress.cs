@@ -73,7 +73,6 @@ public class ButtonPress : MonoBehaviour
             yield return getAudioClip.SendWebRequest(); // zwraca nam plik audio z adresu
             audioClipSelected = DownloadHandlerAudioClip.GetContent(getAudioClip); // pobiera plik audio i przypisuje do zmiennej Audio_Clip_Selected będącą Audio_Clipem
         }
-        audioController.GetComponent<GetAudioAmplitude>().enabled = true;
         PlaySong(); // metoda odtwarzająca dźwięk
     }
 
@@ -82,11 +81,17 @@ public class ButtonPress : MonoBehaviour
         audioController.GetComponent<Movement>().audioClipName = audioClipName;
         audioSource.clip = audioClipSelected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
         audioSource.Play(); // play audio
+        PrepareForSceneChange(); // wszystko do ustawienia przed zmianą sceny
+        SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
+    }
+
+    void PrepareForSceneChange()
+    {
+        audioController.GetComponent<GetAudioAmplitude>().enabled = true;
         dontDestroyOnLoadCamera.enabled = true; // aktywuje kamerę z góry
         cameraTwo.enabled = false; // upewnia się, że kamera podążająca za graczem jest wyłączona
         int objectCounterNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // deklaracja zmiennej która przyjmuje wartość taką, jak ilość obiektów w scenie (zmienna objectNumber)
         audioController.name += objectCounterNumber; // dodaje do nazwy naszego audioControllera odpowiedni numer
-        SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
         for (int i = 1; i <= objectCounterNumber; i++)
         {
             GameObject notTheFirstAudioController = GameObject.Find("AudioController" + i); // znajduje n-ty kontroller audio
@@ -102,6 +107,8 @@ public class ButtonPress : MonoBehaviour
                 color.material.SetColor("_Color", Color.red); // aktywny obiekt zmienia kolor na zielony
                 notTheFirstAudioController.GetComponent<Movement>().enabled = false; // wyłącza ruch każdego obiektu oprócz najmłodszego 
             }
+            notTheFirstAudioController.GetComponent<GetAudioAmplitude>().time = 0; // ustawiamy wartość time z GetAudioAmplitude na 0 -> początek tablicy
+            notTheFirstAudioController.GetComponent<GetAudioAmplitude>().enabled = true; // uruchamiamy skrypt migania świateł
         }
         GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = objectCounterNumber; // aktywuje najmłodszy obiekt
     }
