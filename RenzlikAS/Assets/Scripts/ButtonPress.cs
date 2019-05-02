@@ -18,6 +18,7 @@ public class ButtonPress : MonoBehaviour
     public GameObject audioController; // obiekt do którego jest przypisane źródło dźwięku
     public Camera dontDestroyOnLoadCamera; // kamera która zostanie przeniesiona do drugiej sceny
     public Camera cameraTwo; // kamera podążająca za obiektem
+    public string audioClipName;
 
     void Start()
     {
@@ -48,6 +49,7 @@ public class ButtonPress : MonoBehaviour
         filePath2 = string.Concat(filePath); // konwersja na string
         fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
         fileExtension = fileExtension.ToLower(); // zamiana rozszerzenia na małe litery
+        audioClipName = filePath2.Substring(filePath2.LastIndexOf("\\") + 1);
         while (fileExtension != "wav" && fileExtension != "ogg") // pętla sprawdzająca rozszerzenie pliku -> DZIAŁA: Wav, Ogg; NIE DZIAŁA: Mp3, Flac
         {
             if (fileExtension == "")  // przerywa działanie pętli w momencie, gdy rozszerzenie pliku zwraca pustgo stringa.
@@ -71,11 +73,13 @@ public class ButtonPress : MonoBehaviour
             yield return getAudioClip.SendWebRequest(); // zwraca nam plik audio z adresu
             audioClipSelected = DownloadHandlerAudioClip.GetContent(getAudioClip); // pobiera plik audio i przypisuje do zmiennej Audio_Clip_Selected będącą Audio_Clipem
         }
+        audioController.GetComponent<GetAudioAmplitude>().enabled = true;
         PlaySong(); // metoda odtwarzająca dźwięk
     }
 
     public void PlaySong()
-    {   
+    {
+        audioController.GetComponent<Movement>().audioClipName = audioClipName;
         audioSource.clip = audioClipSelected; // przypisujemy nasz pobrany klip audio pod źródło dźwięku
         audioSource.Play(); // play audio
         dontDestroyOnLoadCamera.enabled = true; // aktywuje kamerę z góry

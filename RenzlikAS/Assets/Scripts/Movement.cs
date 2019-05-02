@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     bool cameraState = false; // tworzy zmienną boolowską która nam mówi o tym jaka kamera jest aktywna
     public float speed;  // prędkość a dokładniej siła jaka zadziała na nasz obiekt
     string sceneName; // nazwa sceny
+    public string audioClipName;
+    public bool isMuted = false;
 
     void FixedUpdate()
     {

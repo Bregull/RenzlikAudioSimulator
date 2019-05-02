@@ -49,6 +49,10 @@ public class MainMenuPause : MonoBehaviour
         pauseMenu.SetActive(true); // aktywuje panel menu pauzy
         Time.timeScale = 0f; // zatrzymuje czas
         escPress = true; // zamienia stan klawisza Esc
+        /*for (int i = 1; i <= numberOfObjects; i++)
+        {
+            GameObject.Find("AudioController" + i).GetComponent<GetAudioAmplitude>().enabled = false;
+        } */
     }
 
     void Resume()
@@ -57,6 +61,11 @@ public class MainMenuPause : MonoBehaviour
         pauseMenu.SetActive(false); // wyłącza panel menu pauzy
         Time.timeScale = 1f; // przywraca czas do normalnej prędkości
         escPress = false; // zamienia stan klawisza esc
+        /*for (int i = 1; i <= numberOfObjects; i++)
+        {
+            GameObject.Find("AudioController" + i).GetComponent<GetAudioAmplitude>().enabled = true;
+        } */
+
     }
 
     void OnClickNewFile() // gdy kilkniemy w przycisk ChooseNewFile
