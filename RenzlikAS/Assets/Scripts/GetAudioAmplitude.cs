@@ -13,7 +13,7 @@ public class GetAudioAmplitude : MonoBehaviour
     float[] sampleData; // tablica która będzie informacją dla źródła światła
     public long time; // zmienna będąca licznikiem kolejnych wartości przekazywanych do źródła światła
     double lightIntensity; // zmienna kontrolująca natężenie naszego źródła światła
-    Light light; //  komponent światła obiektu ----> wywala warning nie wiem dlaczego
+    new Light light; //  komponent światła obiektu ----> wywala warning nie wiem dlaczego
 
     void Start()
     {
