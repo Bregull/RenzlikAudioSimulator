@@ -19,4 +19,4 @@ Samouczek
   
 
 Dokumentacja:
-https://bregull.github.io/RenzlikAudioSimulator/
+https://bregull.github.io/RenzlikAudioSimulator/index.html
