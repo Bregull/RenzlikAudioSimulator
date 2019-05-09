@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['objectnumber',['objectNumber',['../class_object_counter.html#ac83566dca30cccb14c1dd546de3adf6d',1,'ObjectCounter']]]
+  ['lookspeed',['lookSpeed',['../class_mouse_look.html#ab1ebe2a9d53cc35e53d3fcc046c87663',1,'MouseLook']]]
 ];

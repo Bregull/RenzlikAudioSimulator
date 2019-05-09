@@ -5,10 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Renzlik Audio Simulator: RenzlikAS/Assets/Scripts/MouseLook.cs Source File</title>
+<title>Renzlik Audio Simulator: C:/Users/GÓŁA/Documents/GitHub/RenzlikAudioSimulator/RenzlikAS/Assets/Scripts/MouseLook.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,7 +30,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Renzlik Audio Simulator
-   &#160;<span id="projectnumber">1</span>
    </div>
   </td>
  </tr>
@@ -46,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_mouse_look_8cs_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_cbca91a622e72a8843afef0694be1952.html">RenzlikAS</a></li><li class="navelem"><a class="el" href="dir_c84b99fe5e74d784e8b6622f659d53f9.html">Assets</a></li><li class="navelem"><a class="el" href="dir_ba4a836ca7c7a93737170e1cd9ae1911.html">Scripts</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">MouseLook.cs</div>  </div>
@@ -73,11 +92,15 @@ $(function() {
 <a href="_mouse_look_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> System.Collections;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> UnityEngine;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_mouse_look.html">    5</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_mouse_look.html">MouseLook</a> : MonoBehaviour</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    </div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">private</span> Vector2 rotation = Vector2.zero; <span class="comment">// pozwala nam wykonywać rotacje wokół obiektu z offsetem równym (0,0)</span></div><div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_mouse_look.html#ab1ebe2a9d53cc35e53d3fcc046c87663">   10</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code" href="class_mouse_look.html#ab1ebe2a9d53cc35e53d3fcc046c87663">lookSpeed</a> = 3; <span class="comment">// prędkość ruszania kamerą wokół obiektu</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> FixedUpdate()  </div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">if</span> (Input.GetMouseButton(1)) <span class="comment">// warunek- wciśnięcie prawego klawisza myszy</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            rotation.y += Input.GetAxis(<span class="stringliteral">&quot;Mouse X&quot;</span>);</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            rotation.x += -Input.GetAxis(<span class="stringliteral">&quot;Mouse Y&quot;</span>);</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);<span class="comment">//clamp zwraca wartosc value jeżeli znajduje się w przedziale (float value, float min, float max)</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            transform.localRotation = Quaternion.Euler(rotation.x * <a class="code" href="class_mouse_look.html#ab1ebe2a9d53cc35e53d3fcc046c87663">lookSpeed</a>, rotation.y * <a class="code" href="class_mouse_look.html#ab1ebe2a9d53cc35e53d3fcc046c87663">lookSpeed</a>, 0); <span class="comment">//obraca kamere wokół osi x i y, quaternion representuje rotacje </span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div><div class="ttc" id="class_mouse_look_html"><div class="ttname"><a href="class_mouse_look.html">MouseLook</a></div><div class="ttdef"><b>Definition:</b> <a href="_mouse_look_8cs_source.html#l00005">MouseLook.cs:5</a></div></div>
 <div class="ttc" id="class_mouse_look_html_ab1ebe2a9d53cc35e53d3fcc046c87663"><div class="ttname"><a href="class_mouse_look.html#ab1ebe2a9d53cc35e53d3fcc046c87663">MouseLook.lookSpeed</a></div><div class="ttdeci">float lookSpeed</div><div class="ttdef"><b>Definition:</b> <a href="_mouse_look_8cs_source.html#l00010">MouseLook.cs:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.15
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_ad143ff62bbc78e27d4e459854c4e5b2.html">GÓŁA</a></li><li class="navelem"><a class="el" href="dir_7b4d9a47c5c21c6b7e4666bbc4d5274b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_29fb40e0f1aae41477495527d8666f35.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_811f498137d4c6386d9105d5be43f69b.html">RenzlikAudioSimulator</a></li><li class="navelem"><a class="el" href="dir_83d75da869e789f3169b5d27a8df8cf8.html">RenzlikAS</a></li><li class="navelem"><a class="el" href="dir_7170baa83ad0a768d94652fd01c03133.html">Assets</a></li><li class="navelem"><a class="el" href="dir_30dd08f052be70bb3c2a5e01f6311537.html">Scripts</a></li><li class="navelem"><a class="el" href="_mouse_look_8cs.html">MouseLook.cs</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
 </body>
 </html>
