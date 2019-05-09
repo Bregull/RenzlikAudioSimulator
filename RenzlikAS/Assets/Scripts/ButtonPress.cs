@@ -107,7 +107,6 @@ public class ButtonPress : MonoBehaviour
                 color.material.SetColor("_Color", Color.red); // aktywny obiekt zmienia kolor na zielony
                 notTheFirstAudioController.GetComponent<Movement>().enabled = false; // wyłącza ruch każdego obiektu oprócz najmłodszego 
             }
-            notTheFirstAudioController.GetComponent<GetAudioAmplitude>().time = 0; // ustawiamy wartość time z GetAudioAmplitude na 0 -> początek tablicy
             notTheFirstAudioController.GetComponent<GetAudioAmplitude>().enabled = true; // uruchamiamy skrypt migania świateł
         }
         GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject = objectCounterNumber; // aktywuje najmłodszy obiekt

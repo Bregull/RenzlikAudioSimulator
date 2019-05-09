@@ -53,7 +53,6 @@ public class Play_Stop : MonoBehaviour
                 audioSource = audioController.transform.GetChild(0); // znajduje AudioSource przypisany do AudioControllera
                 audioSource.GetComponent<AudioSource>().Stop(); // zatrzymuje odtwarzanie źródła dźwięku
                 audioController.GetComponent<GetAudioAmplitude>().enabled = false;
-                audioController.GetComponent<GetAudioAmplitude>().time = 0;
             }
             stopState = true; // negacja zmiennej 
             buttonText.text = "PLAY"; // zmiana tekstu wyświetlanego na przycisku
