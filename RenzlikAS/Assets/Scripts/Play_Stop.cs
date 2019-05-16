@@ -7,20 +7,25 @@ public class Play_Stop : MonoBehaviour
 {
     public Button stopPlayButton; // dodanie przycisku do sceny
     public Text buttonText; // zmienna pozwalająca na edycję tekstu wyświetlanego na przycisku
+    public Text audioClipNameText; // pole tekstowe 
+    public Text audioClipDuration;
+    GameObject audioController; // służy do znajdowania obiektu AudioController    
+    GameObject selectedAudioController; // aktualnie aktywny AudioController
+    Transform audioSource; // służy do wpływania na odtwarzanie źródła dźwięku
     int objectNumber; // ilość obiektów w scenie
     int selectedObject; // zmienna mówiąca nam o indeksie aktualnie wybranego AudioControllera
-    GameObject audioController; // służy do znajdowania obiektu AudioController
-    Transform audioSource; // służy do wpływania na odtwarzanie źródła dźwięku
-    bool stopState; // zmienna mówiąca o stanie odtwarzania dźwieków
+    int audioSourceLengthSec;
+    int currentSec;
+    int currentMin;
     string audioClipName; // string przechowujący nazwę odtwarzanego pliku audio
-    public Text audioClipNameText; // pole tekstowe 
-    GameObject selectedAudioController; // aktualnie aktywny AudioController
+    bool stopState; // zmienna mówiąca o stanie odtwarzania dźwieków
     bool checkIfMuted; // zmienna mówiąca nam o tym czy AudioController jest wymutowany czy nie
 
     void Start()
     {
         stopPlayButton.onClick.AddListener(StopPlay); // przycisk "czeka" na input gracza
         ActiveSourcesCheck(); // funkcja sprawdzająca aktywne AudioControllery
+        currentMin = 0;
     }
 
     void Update()
@@ -28,10 +33,12 @@ public class Play_Stop : MonoBehaviour
         selectedObject = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().selectedObject; // przypisuje selectedObject indeks aktywnego AudioControllera
         selectedAudioController = GameObject.Find("AudioController" + selectedObject); // selectedAudioController staje się aktywnym AudioControllerem
         audioClipNameText.text = selectedAudioController.GetComponent<Movement>().audioClipName; // przypisuje polu nazwę pliku podpiętego pod aktywny AudioController
+
         checkIfMuted = selectedAudioController.GetComponent<Movement>().isMuted; // sprawdza stan zmiennej isMuted, w celu ustalenia czy chcemy wyciszyć AudioController, czy nie
 
         if (checkIfMuted == true)
             audioClipNameText.text += "  IS MUTED"; // jeśli zmienna przyjmuje wartość true, to dopisujemy do pola tekstowego tekst "  IS MUTED"
+
 
         objectNumber = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // przypisuje objectNumber liczbę równą liczbie obiektów w scenie
 
@@ -39,7 +46,7 @@ public class Play_Stop : MonoBehaviour
         {
             MuteObject(); // funkcja mutująca AudioControllery po naciśnieciu klawisza M
         }
-
+        UpdateDuration();
     }
 
     void StopPlay()
@@ -88,7 +95,7 @@ public class Play_Stop : MonoBehaviour
         ActiveSourcesCheck(); // aktywuje funkcję ActiveSourcesCheck() sprawdzająca które AudioControllery aktualnie są wymutowane, a które nie
     }
 
-    void ActiveSourcesCheck()
+    private void ActiveSourcesCheck()
     {
         for (int i = 1; i <= objectNumber; i++)
         {
@@ -96,10 +103,36 @@ public class Play_Stop : MonoBehaviour
             bool checkIfMuted2 = audioController.GetComponent<Movement>().isMuted; // dodatkowa zmienna typu bool sprawdzająca czy aktywny AudioController jest wymutowany czy nie
             if (checkIfMuted2 == false)
             {
-                audioController.GetComponent<Light>().enabled = true; // wyłacza podświetlanie AudioControllera
+                audioController.GetComponent<Light>().enabled = true; // włacza podświetlanie AudioControllera
             }
             else
-                audioController.GetComponent<Light>().enabled = false; // włacza podświetlanie AudioControllera
+                audioController.GetComponent<Light>().enabled = false; // wyłacza podświetlanie AudioControllera
         }
+    }
+
+    private void UpdateDuration()
+    {
+        Transform getAudioSourceObject = selectedAudioController.transform.GetChild(0);
+        AudioSource audioSourceToGetLength = getAudioSourceObject.GetComponent<AudioSource>();
+        float lengthInSeconds = audioSourceToGetLength.clip.length;
+        int minutes = (int)lengthInSeconds / 60;
+        int sec = (int)lengthInSeconds - minutes * 60;
+
+
+        currentSec = (int)audioSourceToGetLength.time % 60;
+        /*if (audioSourceToGetLength.time >= (currentMin + 1) * 60)
+        {
+            currentSec = 0;
+            currentMin++;
+        }*/
+
+        currentMin = (int)audioSourceToGetLength.time / 60;
+
+        Debug.Log(currentMin);
+
+        if (currentMin == 0)
+            audioClipDuration.text = currentSec + "sec  / " + minutes + "min " + sec + "sec";
+        else
+            audioClipDuration.text = currentMin +"min " + currentSec + "sec  / " + minutes + "min " + sec + "sec";
     }
 }
