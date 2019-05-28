@@ -1,0 +1,20 @@
+Testy opierają się na testach manualnych. Poniżej prezentacja szablonu opisu testów.
+
+Funkcja: Nazwa funkcjonalności
+Oczekiwania: Oczekiwane rezultaty
+Działanie: Odpowiedź programu
+Uwagi: W razie rozbierzności na poziomie Oczekiwania/Działanie 
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Funkcja: Wczytanie pliku do Audio Controllera
+   Oczekiwania: Plik w formacie .wav lub .ogg zostaje wczytany do programu w postaci audio controllera. W przypadku wybrania innego formatu, program wyświetla komunikat o błędzie i prosi o ponowny wybór.
+   Działanie: Program zachowuje się zgodnie z oczekiwaniami.
+
+2. Funkcja: Ruch Audio Controllera w scenie
+   Oczekiwania: Poruszanie obiektów dostępne jest za pomocą strzałek oraz klawiszy 'A' 'W' 'S' 'D' w płaszczyźnie. Klawisze 'Space' i 'L Ctrl' pozwalają poruszać się góra dół w sferze.
+   Działanie: Program pozwala poruszać się zgodnie z założeniami.
+
+3. Wywołanie 'Menu Pauzy' przy pomocy 'Esc'
+   Oczekiwania: Naciśnięcie przycisku 'Esc' w scenie symulatora pozwala na wywołanie 'Menu Pauzy'. Podczas gdy znajdujemy się w menu, za pomocą 'Esc' wracamy do symulatora. 
+   Działanie: Program zachowuje się zgodnie z oczekiwaniami
