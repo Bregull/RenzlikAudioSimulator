@@ -15,6 +15,22 @@ Uwagi: W razie rozbierzności na poziomie Oczekiwania/Działanie
    Oczekiwania: Poruszanie obiektów dostępne jest za pomocą strzałek oraz klawiszy 'A' 'W' 'S' 'D' w płaszczyźnie. Klawisze 'Space' i 'L Ctrl' pozwalają poruszać się góra dół w sferze.
    Działanie: Program pozwala poruszać się zgodnie z założeniami.
 
-3. Wywołanie 'Menu Pauzy' przy pomocy 'Esc'
-   Oczekiwania: Naciśnięcie przycisku 'Esc' w scenie symulatora pozwala na wywołanie 'Menu Pauzy'. Podczas gdy znajdujemy się w menu, za pomocą 'Esc' wracamy do symulatora. 
+3. Funkcja: Wywołanie 'Menu Pauzy' przy pomocy 'Esc'
+   Oczekiwania: Naciśnięcie przycisku 'Esc' w scenie symulatora pozwala na wywołanie 'Menu Pauzy'. Menu pauzuje odtwarzanie utworu. Podczas gdy znajdujemy się w menu, za pomocą 'Esc' wracamy do symulatora. 
    Działanie: Program zachowuje się zgodnie z oczekiwaniami
+
+4. Funkcja: Kontrola pliku aktywnego.
+   Oczekiwania: Przyciskiem w lewym górnym rogu 'Stop/Play' możemy zatrzymać i odtworzyć kontrolowona plik ponownie. Obok wyświetlana jest  cała nazwa pliku oraz czas odtwarzania na tle czasu całego pliku.
+   Działanie: Przycisk 'Stop/Play' działa poprawnie, zegar odtwarzania oraz czas pliku zgodnie z oczekiwaniami. Nazwa pliku wyświetlana jest maksymalnie do 38 znaków.
+   
+5. Funkcja: 'Replace Selected File' w Menu Pauzy.
+   Oczekiwania: Funkcja pozwala na zmianę pliku źródła kontrolowanego.
+   Działanie: Po wybraniu tej funkcji program przenosi do okna wyboru ładowania pliku, gdzie możemy dokonać zmiany pliku audio controllera.
+   
+6. Funkcja: 'Add New File' w Menu Pauzy.
+   Oczekiwania: Program pozwala na załadowanie kolejnego źródła do programu.
+   Działanie: Działa zgodnie z założeniami.
+   
+7. Funkcja: 'Delete Selected File' w Menu Pauzy.
+   Oczekiwania: Możliwość usunięcia kontrolowanego źródła.
+   DZiałanie: Działą zgodnie z założeniami.
