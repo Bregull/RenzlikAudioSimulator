@@ -1,7 +1,6 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class GetAudioAmplitude : MonoBehaviour
 {
@@ -23,7 +22,6 @@ public class GetAudioAmplitude : MonoBehaviour
         {
             sampleData[i] = samples[audioSource.clip.channels * i]; // przypisuje tablicy dla jednego kanału wartość każdego sampla tego kanału (stąd przemnożenie)
         }
-
     }
 
     void Update()

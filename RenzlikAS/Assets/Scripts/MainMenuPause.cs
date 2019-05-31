@@ -126,6 +126,10 @@ public class MainMenuPause : MonoBehaviour
             GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber--; // zmniejsza zmienną naliczająca ilość obiektów w scenie o jeden
             numberOfObjects = GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().objectNumber; // przypisuje zmiennej lokalnej numberOfObjects wartość liczby obiektów w scenie
             GameObject.Find("ObjectCounter").GetComponent<ObjectCounter>().ChangePlayer(); // wywołuje funkcję zmiany obiektu ze skryptu ObjectCounter.cs
+            for (int i = 1; i <= numberOfObjects; i++)
+            {
+                GameObject.Find("AudioController" + i).GetComponent<GetAudioAmplitude>().enabled = false;
+            }
             Resume(); // wznawia grę
         }
         else

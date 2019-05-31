@@ -5,6 +5,7 @@ using UnityEngine.UI;  // obsługa guzika
 using UnityEngine.SceneManagement;  // pozwala nam zarządzać scenami projektu
 using SFB; // implementacja Standalone File Browsera
 using System.Windows.Forms; // potrzebne do wyświetlania error message
+using System.Threading.Tasks;
 
 
 public class ButtonPress : MonoBehaviour
@@ -47,7 +48,7 @@ public class ButtonPress : MonoBehaviour
     {
         filePath = StandaloneFileBrowser.OpenFilePanel("Wybierz utwór", "", "", false);  // otwiera okno przeglądania plików i zapisuje jako tablica string
         filePath2 = string.Concat(filePath); // konwersja na string
-        fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
+        fileExtension = filePath2.Substring(filePath2.LastIndexOf('.') + 1); // pozwala nam określić rozszerzenie pliku poprzez znalezienie kropki w nazwie pliku, oraz zwrócenie nam wszystkiego co się znajduje za nią
         fileExtension = fileExtension.ToLower(); // zamiana rozszerzenia na małe litery
         audioClipName = filePath2.Substring(filePath2.LastIndexOf("\\") + 1);
         while (fileExtension != "wav" && fileExtension != "ogg") // pętla sprawdzająca rozszerzenie pliku -> DZIAŁA: Wav, Ogg; NIE DZIAŁA: Mp3, Flac
@@ -85,7 +86,7 @@ public class ButtonPress : MonoBehaviour
         SceneManager.LoadScene("RenzlikAS", LoadSceneMode.Single); // przenosi nas do sceny głównej RenzlikAS
     }
 
-    void PrepareForSceneChange()
+    public void PrepareForSceneChange()
     {
         audioController.GetComponent<GetAudioAmplitude>().enabled = true;
         dontDestroyOnLoadCamera.enabled = true; // aktywuje kamerę z góry

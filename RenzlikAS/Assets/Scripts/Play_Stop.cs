@@ -118,17 +118,9 @@ public class Play_Stop : MonoBehaviour
         int minutes = (int)lengthInSeconds / 60;
         int sec = (int)lengthInSeconds - minutes * 60;
 
-
         currentSec = (int)audioSourceToGetLength.time % 60;
-        /*if (audioSourceToGetLength.time >= (currentMin + 1) * 60)
-        {
-            currentSec = 0;
-            currentMin++;
-        }*/
 
         currentMin = (int)audioSourceToGetLength.time / 60;
-
-        Debug.Log(currentMin);
 
         if (currentMin == 0)
             audioClipDuration.text = currentSec + "sec  / " + minutes + "min " + sec + "sec";
