@@ -63,6 +63,7 @@ public class ButtonPress : MonoBehaviour
             filePath2 = string.Concat(filePath); // ponowna konwersja
             fileExtension = filePath2.Substring(filePath2.IndexOf('.') + 1); // ponowna analiza rozszerzenia
             fileExtension = fileExtension.ToLower(); // zamiana rozszerzenia na małe litery
+            audioClipName = filePath2.Substring(filePath2.LastIndexOf("\\") + 1);
         }
         Debug.Log(filePath2); // zwraca nam ścieżkę pliku w konsoli
     }
