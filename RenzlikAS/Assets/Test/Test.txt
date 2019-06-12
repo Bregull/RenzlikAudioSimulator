@@ -1,20 +1,5 @@
-File: Drums-Chamber-AR70.wav
-Coordinates: (-16.7, 0.0, -36.4) 
-Distance from Listener: 100%
-Currently at: 8s 
-
-File: Drums-Chamber-AR70.wav
-Coordinates: (17.3, 0.0, -26.1) 
-Distance from Listener: 100%
-Currently at: 5s 
-
-File: Vocals-Nick-M81.wav
-Coordinates: (0.3, 0.0, -27.7) 
-Distance from Listener: 11%
-Currently at: 4s 
-
-File: Vicarious.wav
-Coordinates: (7.1, 0.0, -38.1) 
-Distance from Listener: 60%
+File: Vicarious.ogg
+Coordinates: (-10.0, 0.0, -31.4) 
+Distance from Listener: 56%
 Currently at: 3s 
 
