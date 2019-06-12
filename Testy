@@ -33,4 +33,24 @@ Uwagi: W razie rozbierzności na poziomie Oczekiwania/Działanie
    
 7. Funkcja: 'Delete Selected File' w Menu Pauzy.
    Oczekiwania: Możliwość usunięcia kontrolowanego źródła.
-   DZiałanie: Działą zgodnie z założeniami.
+   Działanie: Działą zgodnie z założeniami.
+   
+8. Funkcja: 'Quit' w Menu Pauzy.
+   Oczekiwania: Przeniesienie do Menu Startowego oraz reset sceny programu.
+   Działanie: Działanie zgodne z oczekiwaniami.
+   
+9. Funkcja: 'X' w Menu Pauzy.
+   Oczekiwania: Przycisk wyłączy Menu Pauzy oraz przeniesie użytkownika do sceny głównej programu.
+   Działanie: Działanie zgodne z oczekiwaniami.
+   
+10. Funkcja: 'X' w Menu Startowym
+    Oczekiwania: Zamknięcie programu.
+    Działanie: Zgodne z założeniami.
+    
+11. Funkcja: Zmiana kontrolowanego źródła.
+    Oczekiwania: Wybór dowolnego, kontrolowanego źródła można dokonać przy pomocy LPM. Oraz zmiana na kolejne źródło przy pomocy klawisza 'Tab'.
+    Działanie: Działa zgodnie z założeniami. Inne klawisze myszy nie wykazują funkcjonalności.
+    
+12. Funkcja: Graniczna ilość dodanych źródeł dźwięku w scenie programu.
+    Oczekiwania: Programowo ilość źródeł dźwięku nie jest ograniczona. Teoretycznie ilość kul jest nieskończona, a funkcjonalność programu jest gotowa na najbardziej wymagającego użytkownika.
+    Działanie: Przetestowana liczba źródeł dźwięku to 23, co naszym zdaniem jest ilością wystarczającą w zupełności. Podczas używania programu nie przewidujemy, że użytkownik wygeneruje więcej niż 10 źródeł dźwięku. Ograniczenia w generacji kul wynikają z możliwości sprzętowych komputera na którym przeprowadzano test. Ta ilość pozwalała na pełną kontrolę nad źródłami.
