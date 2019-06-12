@@ -23,34 +23,38 @@ Uwagi: W razie rozbierzności na poziomie Oczekiwania/Działanie
    Oczekiwania: Przyciskiem w lewym górnym rogu 'Stop/Play' możemy zatrzymać i odtworzyć kontrolowona plik ponownie. Obok wyświetlana jest  cała nazwa pliku oraz czas odtwarzania na tle czasu całego pliku.
    Działanie: Przycisk 'Stop/Play' działa poprawnie, zegar odtwarzania oraz czas pliku zgodnie z oczekiwaniami. Nazwa pliku wyświetlana jest maksymalnie do 38 znaków.
    
-5. Funkcja: 'Replace Selected File' w Menu Pauzy.
+5. Funkcja: Wyciszenie kontrolowanego źródła.
+   Oczekiwania: Przy pomocy klawisza 'M' program umożliwia wyciszenie źródła kontrolowanego, przy jednoczesnym jego odtwarzaniu.
+   Dzialanie: Zgodne z założeniami.
+   
+6. Funkcja: 'Replace Selected File' w Menu Pauzy.
    Oczekiwania: Funkcja pozwala na zmianę pliku źródła kontrolowanego.
    Działanie: Po wybraniu tej funkcji program przenosi do okna wyboru ładowania pliku, gdzie możemy dokonać zmiany pliku audio controllera.
    
-6. Funkcja: 'Add New File' w Menu Pauzy.
+7. Funkcja: 'Add New File' w Menu Pauzy.
    Oczekiwania: Program pozwala na załadowanie kolejnego źródła do programu.
    Działanie: Działa zgodnie z założeniami.
    
-7. Funkcja: 'Delete Selected File' w Menu Pauzy.
+8. Funkcja: 'Delete Selected File' w Menu Pauzy.
    Oczekiwania: Możliwość usunięcia kontrolowanego źródła.
    Działanie: Działą zgodnie z założeniami.
    
-8. Funkcja: 'Quit' w Menu Pauzy.
+9. Funkcja: 'Quit' w Menu Pauzy.
    Oczekiwania: Przeniesienie do Menu Startowego oraz reset sceny programu.
    Działanie: Działanie zgodne z oczekiwaniami.
    
-9. Funkcja: 'X' w Menu Pauzy.
+10. Funkcja: 'X' w Menu Pauzy.
    Oczekiwania: Przycisk wyłączy Menu Pauzy oraz przeniesie użytkownika do sceny głównej programu.
    Działanie: Działanie zgodne z oczekiwaniami.
    
-10. Funkcja: 'X' w Menu Startowym
+11. Funkcja: 'X' w Menu Startowym
     Oczekiwania: Zamknięcie programu.
     Działanie: Zgodne z założeniami.
     
-11. Funkcja: Zmiana kontrolowanego źródła.
+12. Funkcja: Zmiana kontrolowanego źródła.
     Oczekiwania: Wybór dowolnego, kontrolowanego źródła można dokonać przy pomocy LPM. Oraz zmiana na kolejne źródło przy pomocy klawisza 'Tab'.
     Działanie: Działa zgodnie z założeniami. Inne klawisze myszy nie wykazują funkcjonalności.
     
-12. Funkcja: Graniczna ilość dodanych źródeł dźwięku w scenie programu.
+13. Funkcja: Graniczna ilość dodanych źródeł dźwięku w scenie programu.
     Oczekiwania: Programowo ilość źródeł dźwięku nie jest ograniczona. Teoretycznie ilość kul jest nieskończona, a funkcjonalność programu jest gotowa na najbardziej wymagającego użytkownika.
     Działanie: Przetestowana liczba źródeł dźwięku to 23, co naszym zdaniem jest ilością wystarczającą w zupełności. Podczas używania programu nie przewidujemy, że użytkownik wygeneruje więcej niż 10 źródeł dźwięku. Ograniczenia w generacji kul wynikają z możliwości sprzętowych komputera na którym przeprowadzano test. Ta ilość pozwalała na pełną kontrolę nad źródłami.
