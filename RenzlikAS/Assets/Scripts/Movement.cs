@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     CharacterController controller;
     Vector3 moveDirection;
     Vector3 audioListener = new Vector3(0, 0, -30);
-    float distanceFromListener;
+    public float distanceFromListener;
 
     void Start()
     {
@@ -29,8 +29,6 @@ public class Movement : MonoBehaviour
 
         if (sceneName != "File Browser") // warunek sprawdzający nazwę sceny
         {
-            Debug.Log(distanceFromListener);
-
             float moveHorizontal = Input.GetAxis("Horizontal"); // sprawdza czy zostały wciśnięte strzałki prawo/lewo lub A/D
             float moveVertical = Input.GetAxis("Vertical"); // sprawdza czy zostały wciśnięte strzałki góra/dół lub W/S
 

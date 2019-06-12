@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetAudioAmplitude : MonoBehaviour
 {
     public GameObject audioSourceObject; // obiekt który będzie analizowany
-    AudioSource audioSource; // źródło dźwięku przy obiekcie audioSourceObject
+    public AudioSource audioSource; // źródło dźwięku przy obiekcie audioSourceObject
     float[] samples; // tablica sampli w audioClipie
     float[] sampleData; // tablica która będzie informacją dla źródła światła
     new Light light; //  komponent światła obiektu

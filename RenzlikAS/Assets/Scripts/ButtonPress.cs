@@ -20,6 +20,7 @@ public class ButtonPress : MonoBehaviour
     public Camera dontDestroyOnLoadCamera; // kamera która zostanie przeniesiona do drugiej sceny
     public Camera cameraTwo; // kamera podążająca za obiektem
     public string audioClipName;
+    public Canvas menu;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class ButtonPress : MonoBehaviour
 
     void OnClick()
     {
+        menu.GetComponent<Canvas>().enabled = false;
         SelectFile(); // instrukcje po naciśnięciu buttona
         StartCoroutine(UploadAudioFile()); //metoda pobierająca oraz odtwarzająca wybraną ścieżkę audio
     }
@@ -55,6 +57,7 @@ public class ButtonPress : MonoBehaviour
         {
             if (fileExtension == "")  // przerywa działanie pętli w momencie, gdy rozszerzenie pliku zwraca pustgo stringa.
             {
+                menu.GetComponent<Canvas>().enabled = true;
                 break; // kończy pętlę
             }
             MessageBox.Show("Nieobsługiwany format pliku.\nWybierz jeszcze raz."); // error
